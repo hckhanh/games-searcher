@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry    : resolve(__dirname, 'client'),
   output   : {
-    filename  : '[name].js',
+    filename  : 'index.js',
     path      : resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -17,8 +17,14 @@ module.exports = {
     contentBase: resolve(__dirname, 'dist'),
     // match the output path
 
-    publicPath: '/'
+    publicPath: '/',
     // match the output `publicPath`
+
+    port: 3000,
+    // port for dev server
+
+    historyApiFallback: true
+    // instead of return 404, return index.html
   },
   module   : {
     rules: [
