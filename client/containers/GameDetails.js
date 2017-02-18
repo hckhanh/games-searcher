@@ -1,7 +1,41 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { updateNumber } from '../actions/index'
 
+@connect(
+  state => ({
+    home: state.home
+  }),
+  dispatch => ({
+    updateNumber: bindActionCreators(updateNumber, dispatch)
+  })
+)
 export default class GameDetails extends Component {
+  handleUpdateNumber = () => {
+    console.log(this.props)
+    this.props.updateNumber(this.props.home.get('number') + 20)
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
+  }
+
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps')
+  }
+
   render() {
-    return <h2>Game Details</h2>
+    return (
+      <div>
+        <h2>Game Details home</h2>
+        <div>{this.props.home.get('number')}</div>
+        <button onClick={this.handleUpdateNumber}>Update number</button>
+      </div>
+    )
   }
 }
