@@ -1,6 +1,7 @@
 const { resolve } = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const DEV_SERVER_PORT = 3000
 
@@ -25,7 +26,6 @@ module.exports = {
     path      : resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  // context: resolve(__dirname, 'client'),
   devtool  : 'inline-source-map',
   devServer: {
     hot: true,
@@ -53,6 +53,13 @@ module.exports = {
       {
         test: /\.pug$/,
         use : ['pug-loader']
+      },
+      {
+        test: /\.(sass|s?css)$/,
+        use : ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use     : ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
@@ -65,6 +72,16 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'views/index.pug'
+    }),
+
+    new ExtractTextPlugin('index.css'),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendors',
+      // (the commons chunk name)
+
+      filename: 'vendors.js'
+      // (the filename of the commons chunk)
     })
   ]
 }
