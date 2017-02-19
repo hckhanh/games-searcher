@@ -1,6 +1,5 @@
 import { AutoComplete, Button, Col, Icon, Input, Layout, Menu, Row, Select } from 'antd'
 import React, { Component } from 'react'
-const Option = Select.Option
 const { Header, Footer, Content } = Layout
 
 export default class App extends Component {
@@ -8,14 +7,14 @@ export default class App extends Component {
     return (
       <Layout>
         <Header className='sub-header'>
-          <Select className='currency-dropdown' size='small' defaultValue='lucy'>
-            <Option value='jack'>VND</Option>
-            <Option value='lucy'>USD</Option>
+          <Select className='currency-dropdown' size='small' defaultValue='USD'>
+            <Select.Option value='USD'>USD</Select.Option>
+            <Select.Option value='VND'>VND</Select.Option>
           </Select>
         </Header>
         <Header className='main-header'>
           <Row >
-            <Col span={7}>
+            <Col span={5}>
               <div className='logo-icon' />
               <div className='logo-title'>Game Searcher</div>
             </Col>
@@ -36,7 +35,7 @@ export default class App extends Component {
                 />
               </AutoComplete>
             </Col>
-            <Col span={7}>
+            <Col span={9}>
               <Menu
                 className='top-menu-right'
                 theme='dark'
