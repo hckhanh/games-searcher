@@ -18,6 +18,12 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
+    'es6-promise/auto',
+    // a polyfill of the ES6 Promise
+
+    'whatwg-fetch',
+    // window.fetch JavaScript polyfill for all browsers
+
     resolve(__dirname, 'client')
     // main index.js file of web client
   ],
