@@ -19,7 +19,7 @@ module.exports = {
     // only- means to only hot reload for successful updates
 
     resolve(__dirname, 'client')
-    // index.js
+    // main index.js file of web client
   ],
   output   : {
     filename  : 'index.js',
@@ -31,7 +31,7 @@ module.exports = {
     hot: true,
     // enable HMR on the server
 
-    contentBase: resolve(__dirname, 'dist'),
+    // contentBase: [resolve(__dirname, 'public')],
     // match the output path
 
     publicPath: '/',
@@ -60,6 +60,17 @@ module.exports = {
           fallback: 'style-loader',
           use     : ['css-loader', 'sass-loader']
         })
+      },
+      {
+        test: /\.less$/,
+        use : ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use     : ['css-loader', 'less-loader']
+        })
+      },
+      {
+        test: /\.(svg|png)/,
+        use : 'file-loader?name=images/[name].[ext]'
       }
     ]
   },
@@ -74,14 +85,6 @@ module.exports = {
       template: 'views/index.pug'
     }),
 
-    new ExtractTextPlugin('index.css'),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      // (the commons chunk name)
-
-      filename: 'vendors.js'
-      // (the filename of the commons chunk)
-    })
+    new ExtractTextPlugin('index.css')
   ]
 }
