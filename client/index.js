@@ -8,16 +8,16 @@ import Root from './routes'
 // Create store for app state
 const store = createStore(reducers)
 
-function render(component) {
-  ReactDOM.render(component, document.getElementById('index'))
+function render() {
+  ReactDOM.render(<Root store={store} />, document.getElementById('index'))
 }
 
-render(<Root store={store} />)
+render()
 
 // Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./routes', () => {
     store.replaceReducer(reducers)
-    render(<Root store={store} />)
+    render()
   })
 }
