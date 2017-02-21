@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev-server": "cross-env DEBUG=games-searcher:* node ./bin/www",
+    "dev-server": "cross-env DEBUG=games-searcher:* node $NODE_DEBUG_OPTION ./bin/www",
     "dev-web": "webpack-dev-server --config dev.config.js",
     "start": "node ./bin/www"
   },
@@ -20,6 +20,7 @@
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "morgan": "~1.8.1",
+    "node-fetch": "^1.6.3",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

@@ -87,6 +87,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
 
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify('localhost:4000/api')
+    }),
+
     new HtmlWebpackPlugin({
       template: 'views/index.pug'
     }),
