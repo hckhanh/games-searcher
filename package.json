@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev-server": "cross-env DEBUG=games-searcher:* node $NODE_DEBUG_OPTION ./bin/www",
+    "dev-server": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"cross-env DEBUG=games-searcher:* PORT=4000 node ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
     "dev-web": "webpack-dev-server --config dev.config.js",
     "start": "node ./bin/www"
   },
@@ -13,7 +13,6 @@
     "babel-loader": "^6.3.1",
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
-    "cross-env": "^3.1.4",
     "debug": "~2.6.0",
     "es6-promise": "^4.0.5",
     "express": "~4.14.1",
@@ -39,6 +38,8 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
+    "concurrently": "^3.3.0",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
