@@ -88,7 +88,7 @@ module.exports = {
     // prints more readable module names in the browser console on HMR updates
 
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify('localhost:4000/api')
+      API_URL: JSON.stringify('//localhost:4000/api')
     }),
 
     new HtmlWebpackPlugin({
