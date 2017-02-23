@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev-server": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"cross-env DEBUG=games-searcher:* PORT=4000 node ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
-    "dev-web": "webpack-dev-server --config dev.config.js",
-    "start": "node ./bin/www"
+    "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"cross-env DEBUG=games-searcher:* PORT=4000 node ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
+    "dev-server": "cross-env DEBUG=games-searcher:* node ./bin/www"
   },
   "dependencies": {
     "antd": "^2.7.2",
@@ -20,18 +19,21 @@
     "lodash": "^4.17.4",
     "morgan": "~1.8.1",
     "node-fetch": "^1.6.3",
+    "opbeat-react": "^2.1.7",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "serve-favicon": "~2.3.2",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.1",
+    "babel-plugin-add-react-displayname": "0.0.4",
     "babel-plugin-import": "^1.1.1",
     "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",

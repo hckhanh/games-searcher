@@ -19,7 +19,10 @@ router.get('/', function (req, res, next) {
         data.push({
           appId      : gameData.steam_appid,
           name       : gameData.name,
-          headerImage: gameData.header_image
+          headerImage: gameData.header_image,
+          pc         : gameData.length !== 0,
+          mac        : gameData.length !== 0,
+          linux      : gameData.length !== 0
         })
       })
 

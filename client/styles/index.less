@@ -72,3 +72,65 @@
   margin-left  : auto;
   margin-right : auto;
 }
+
+.platform-icon {
+  width        : 16px;
+  height       : 16px;
+  display      : inline-block;
+  margin-right : 5px;
+}
+
+.pc-icon:extend(.platform-icon) {
+  background : url('../../public/images/pc.png') no-repeat center;
+}
+
+.mac-icon:extend(.platform-icon) {
+  background : url('../../public/images/mac.png') no-repeat center;
+}
+
+.linux-icon:extend(.platform-icon) {
+  background : url('../../public/images/linux.png') no-repeat center;
+}
+
+.card-game-content {
+  .platforms {
+    display  : inline-block;
+    position : relative;
+    margin   : 10px 16px;
+    top      : 11px;
+  }
+  .prices-block {
+    display : inline-block;
+    margin  : 10px 16px;
+    float   : right;
+    .discount-percent {
+      vertical-align            : top;
+      line-height               : 38px;
+      display                   : inline-block;
+      font-size                 : 26px;
+      background-color          : green;
+      padding                   : 0 5px;
+      border-top-left-radius    : 4px;
+      border-bottom-left-radius : 4px;
+      font-family               : inherit;
+    }
+    .prices {
+      line-height                : 14px;
+      display                    : inline-block;
+      text-align                 : right;
+      background-color           : red;
+      padding                    : 5px 10px 5px 7px;
+      border-top-right-radius    : 4px;
+      border-bottom-right-radius : 4px;
+      .old-price {
+        font-size       : 14px;
+        text-decoration : line-through;
+        font-family     : inherit;
+      }
+      .new-price {
+        font-size   : 16px;
+        font-family : inherit;
+      }
+    }
+  }
+}
