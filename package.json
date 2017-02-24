@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"cross-env DEBUG=games-searcher:* PORT=4000 node ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
-    "dev-server": "cross-env DEBUG=games-searcher:* node ./bin/www"
+    "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"nodemon --config nodemon.json ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
+    "dev-server": "nodemon --config nodemon.json ./bin/www"
   },
   "dependencies": {
     "antd": "^2.7.2",
