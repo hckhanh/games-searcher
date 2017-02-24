@@ -1,0 +1,15 @@
+{
+  "execMap": {
+    "js": "node"
+  },
+  "watch": [
+    "app.js",
+    "bin/www",
+    "routes/"
+  ],
+  "env": {
+    "DEBUG": "games-searcher:*",
+    "PORT": 4000
+  },
+  "ext": "js"
+}

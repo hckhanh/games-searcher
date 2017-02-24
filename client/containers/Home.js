@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd'
+import { Card, Col, Icon, Row } from 'antd'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -39,9 +39,8 @@ export default class Home extends Component {
                         <div className='card-game-content'>
                           {
                             <div className='platforms'>
-                              {game.get('pc') && <div className='pc-icon' />}
-                              {game.get('mac') && <div className='mac-icon' />}
-                              {game.get('linux') && <div className='linux-icon' />}
+                              {game.get('pc') && <Icon className='platform-icon' type='windows' />}
+                              {game.get('mac') && <Icon className='platform-icon' type='apple' />}
                             </div>
                           }
                           <div className='prices-block'>
