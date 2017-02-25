@@ -7,7 +7,7 @@
 }
 
 .logo-title {
-  color       : white;
+  color       : #C6D4DF;
   font-size   : 30px;
   font-weight : bold;
   left        : 7px;
@@ -15,8 +15,9 @@
 }
 
 .sub-header {
-  height      : 40px !important;
-  line-height : 40px !important;
+  height           : 40px !important;
+  line-height      : 40px !important;
+  background-color : #171A21 !important;
   .currency-dropdown {
     width      : 60px;
     float      : right;
@@ -25,12 +26,18 @@
 }
 
 .main-header {
-  background-color : #404040 !important;
+  background-color : #171A21 !important;
   height           : 70px !important;
   .top-menu-right {
     line-height : 70px;
     float       : right;
   }
+}
+
+.main-footer {
+  text-align       : center;
+  color            : #8F98A0 !important;
+  background-color : #101821;
 }
 
 .game-search {
@@ -64,31 +71,10 @@
   border-bottom-left-radius : 0 !important;
 }
 
-.main-content {
-  background   : #FFFFFF;
-  padding      : 24px;
-  min-height   : 280px;
-  max-width    : 1180px;
-  margin-left  : auto;
-  margin-right : auto;
-}
-
 .platform-icon {
   margin-right : 5px;
-  color        : #AAAAAA;
+  color        : #ACDBE9;
   font-size    : 16px;
-}
-
-.pc-icon:extend(.platform-icon) {
-  background : url('../../public/images/pc.png') no-repeat center;
-}
-
-.mac-icon:extend(.platform-icon) {
-  background : url('../../public/images/mac.png') no-repeat center;
-}
-
-.linux-icon:extend(.platform-icon) {
-  background : url('../../public/images/linux.png') no-repeat center;
 }
 
 .card-game-content {
@@ -107,29 +93,74 @@
       line-height               : 38px;
       display                   : inline-block;
       font-size                 : 26px;
-      background-color          : green;
+      color                     : #A4D007;
+      background-color          : #4C6B22;
       padding                   : 0 5px;
       border-top-left-radius    : 4px;
       border-bottom-left-radius : 4px;
-      font-family               : inherit;
     }
     .prices {
       line-height                : 14px;
       display                    : inline-block;
       text-align                 : right;
-      background-color           : red;
+      background-color           : rgba(20, 31, 44, 0.8);
       padding                    : 5px 10px 5px 7px;
       border-top-right-radius    : 4px;
       border-bottom-right-radius : 4px;
       .old-price {
         font-size       : 14px;
         text-decoration : line-through;
-        font-family     : inherit;
+        color           : #577180;
       }
       .new-price {
-        font-size   : 16px;
-        font-family : inherit;
+        font-size : 16px;
+        color     : #ACDBF5;
       }
     }
+    .price {
+      vertical-align   : top;
+      line-height      : 38px;
+      display          : inline-block;
+      font-size        : 26px;
+      color            : #ACDBF5;
+      background-color : rgba(20, 31, 44, 0.8);
+      padding          : 0 5px;
+      border-radius    : 4px;
+    }
+    .free-tag {
+      vertical-align   : top;
+      line-height      : 38px;
+      display          : inline-block;
+      font-size        : 26px;
+      color            : #A4D007;
+      background-color : #4C6B22;
+      padding          : 0 5px;
+      border-radius    : 4px;
+    }
   }
+}
+
+.ant-card.ant-card-loading {
+  height : 190px;
+}
+
+.ant-card.ant-card-bordered {
+  background-image : url('../../public/images/background_item.jpg');
+  border-color     : #1B2838;
+}
+
+.ant-layout-content {
+  background : #1B2838 url('../../public/images/body_top.png') center top no-repeat;
+  .main-content {
+    padding-bottom : 24px;
+    min-height     : 280px;
+    max-width      : 1180px;
+    margin-left    : auto;
+    margin-right   : auto;
+  }
+}
+
+.ant-menu-dark {
+  background-color    : #171A21 !important;
+  border-bottom-color : #171A21 !important;
 }
