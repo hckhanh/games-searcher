@@ -1,4 +1,4 @@
-import { Card, Col, Icon, Row } from 'antd'
+import { Card, Col, Icon, Row, Spin } from 'antd'
 import React, { Component } from 'react'
 import { FormattedNumber } from 'react-intl'
 import { connect } from 'react-redux'
@@ -7,7 +7,8 @@ import { getPrices, getTopGames, searchGames } from '../actions/home'
 
 @connect(
   state => ({
-    home: state.home
+    home: state.home,
+    app : state.app
   }),
   dispatch => ({
     getTopGames: bindActionCreators(getTopGames, dispatch),
@@ -32,7 +33,11 @@ export default class Home extends Component {
 
     const name = nextProps.location.query.name
     if (this.props.location.query.name !== name) {
-      nextProps.searchGames(name)
+      if (name) {
+        nextProps.searchGames(name)
+      } else {
+        this.props.getTopGames()
+      }
     }
   }
 
@@ -73,6 +78,7 @@ export default class Home extends Component {
 
     return (
       <div>
+        <Spin className='spin-loading' spinning={this.props.app.get('loading')} tip='Patient is good for you' />
         {
           this
             .props.home.get('games')
@@ -100,25 +106,25 @@ export default class Home extends Component {
 
                     return (
                       <Col key={game.get('app_id')} span={24 / column}>
-                      <Card bodyStyle={{ padding: 0 }}
-                            loading={loading}>
-                        <a href={url} target='_blank'>
-                          <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
-                          <div className='card-game-content'>
-                            {
-                              <div className='platforms'>
-                                {
-                                  game.getIn(['platforms', 'windows']) &&
-                                  <Icon className='platform-icon' type='windows' />
-                                }
-                                {game.getIn(['platforms', 'mac']) && <Icon className='platform-icon' type='apple' />}
-                              </div>
-                            }
-                            {this.generatePriceBlock(discountPercent, oldPrice, newPrice)}
-                          </div>
-                        </a>
-                      </Card>
-                    </Col>
+                        <Card bodyStyle={{ padding: 0 }}
+                              loading={loading}>
+                          <a href={url} target='_blank'>
+                            <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
+                            <div className='card-game-content'>
+                              {
+                                <div className='platforms'>
+                                  {
+                                    game.getIn(['platforms', 'windows']) &&
+                                    <Icon className='platform-icon' type='windows' />
+                                  }
+                                  {game.getIn(['platforms', 'mac']) && <Icon className='platform-icon' type='apple' />}
+                                </div>
+                              }
+                              {this.generatePriceBlock(discountPercent, oldPrice, newPrice)}
+                            </div>
+                          </a>
+                        </Card>
+                      </Col>
                     )
                   })
                 }
