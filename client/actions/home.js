@@ -3,13 +3,17 @@ import apis from '../apis'
 
 export function getTopGames() {
   return dispatch => {
+    dispatch({ type: 'LOAD_APP' })
+
     const url = apis.GET_TOP_GAMES()
     fetch(url)
       .then(res => res.json())
       .then(games => {
+        dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'GET_GAMES_SUCCESS', games })
       })
       .catch(error => {
+        dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'FETCH_ERROR', url: url })
         console.error(error, console.trace())
       })
@@ -17,7 +21,6 @@ export function getTopGames() {
 }
 
 export function getPrices() {
-  console.log('call getPrices')
   return (dispatch, getState) => {
     const state = getState()
     const appIds = state.home.get('games')
@@ -43,13 +46,17 @@ export function getPrices() {
 
 export function searchGames(name) {
   return dispatch => {
+    dispatch({ type: 'LOAD_APP' })
+
     const url = apis.SEARCH_GAMES(encodeURIComponent(name))
     fetch(url)
       .then(res => res.json())
       .then(games => {
+        dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'GET_GAMES_SUCCESS', games })
       })
       .catch(error => {
+        dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'FETCH_ERROR', url: url })
         console.error(error, console.trace())
       })

@@ -1,3 +1,11 @@
+#index {
+  height : inherit;
+  .ant-layout {
+    height           : inherit;
+    background-color : #101821;
+  }
+}
+
 .logo-icon {
   width           : 50px;
   height          : 69px;
@@ -8,16 +16,24 @@
 
 .logo-title {
   color       : #C6D4DF;
-  font-size   : 30px;
+  font-size   : 20px;
   font-weight : bold;
   left        : 7px;
   position    : relative;
 }
 
+.ant-layout-header {
+  padding    : 0 !important;
+  background : #101821 !important;
+  .header-content {
+    max-width : 1180px;
+    margin    : 0 auto;
+  }
+}
+
 .sub-header {
-  height           : 40px !important;
-  line-height      : 40px !important;
-  background-color : #171A21 !important;
+  height      : 40px !important;
+  line-height : 40px !important;
   .currency-dropdown {
     width      : 60px;
     float      : right;
@@ -26,11 +42,14 @@
 }
 
 .main-header {
-  background-color : #171A21 !important;
-  height           : 70px !important;
+  height : 70px !important;
   .top-menu-right {
-    line-height : 70px;
-    float       : right;
+    line-height      : 70px;
+    float            : right;
+    background-color : #101821 !important;
+  }
+  .search-btn {
+    vertical-align : middle;
   }
 }
 
@@ -41,7 +60,7 @@
 }
 
 .game-search {
-  width          : 500px;
+  width          : 250px;
   vertical-align : middle !important;
 }
 
@@ -69,6 +88,29 @@
 .game-search.ant-select-auto-complete .ant-input-preSuffix-wrapper .ant-input-suffix button {
   border-top-left-radius    : 0 !important;
   border-bottom-left-radius : 0 !important;
+}
+
+.ant-select-dropdown {
+  background-color : #101821 !important;
+}
+
+.ant-select-dropdown-menu-item {
+  color : #ACDBF5 !important;
+}
+
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item-selected:hover,
+.ant-select-dropdown-menu-item {
+  background-color : #212D3D !important;
+}
+
+.ant-select-dropdown-menu-item:hover,
+.ant-select-dropdown-menu-item-active {
+  .title {
+    color : white;
+  }
+  color            : white !important;
+  background-color : #101821 !important;
 }
 
 .platform-icon {
@@ -141,7 +183,7 @@
 }
 
 .ant-card.ant-card-loading {
-  height : 190px;
+  height : 195px;
 }
 
 .ant-card.ant-card-bordered {
@@ -152,15 +194,44 @@
 .ant-layout-content {
   background : #1B2838 url('../../public/images/body_top.png') center top no-repeat;
   .main-content {
-    padding-bottom : 24px;
-    min-height     : 280px;
-    max-width      : 1180px;
-    margin-left    : auto;
-    margin-right   : auto;
+    width     : 100%;
+    max-width : 1180px;
+    margin    : 0 auto;
+    padding   : 24px 0;
   }
 }
 
 .ant-menu-dark {
   background-color    : #171A21 !important;
   border-bottom-color : #171A21 !important;
+}
+
+.suggestions {
+  .title {
+    display        : inline-block;
+    font-size      : 20px;
+    color          : #ACDBF5;
+    vertical-align : top;
+    line-height    : 45px;
+    margin-left    : 13px;
+  }
+}
+
+.ant-spin {
+  display    : block !important;
+  text-align : center !important;
+  color      : #ACDBE9 !important;
+  .ant-spin-dot {
+    margin : 0 auto;
+    i {
+      background-color : #ACDBE9;
+    }
+  }
+}
+
+.spin-loading {
+  position    : absolute !important;
+  top         : 50%;
+  left        : 50%;
+  margin-left : -60px;
 }
