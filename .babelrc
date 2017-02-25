@@ -19,6 +19,7 @@
         "libraryDirectory": "lib",
         "style": true
       }
-    ]
+    ],
+    "lodash"
   ]
 }

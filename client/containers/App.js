@@ -1,5 +1,4 @@
 import { Button, Col, Icon, Layout, Menu, Row, Select } from 'antd'
-import { List } from 'immutable'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -18,7 +17,6 @@ const Option = Select.Option
 )
 export default class App extends Component {
   state = {
-    suggestions: List(),
     currentName: null
   }
 

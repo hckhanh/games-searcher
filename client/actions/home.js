@@ -1,8 +1,10 @@
 import { List } from 'immutable'
+import { lowerCase } from 'lodash'
 import apis from '../apis'
 
 export function getTopGames() {
   return dispatch => {
+    dispatch({ type: 'CLEAR_GAMES' })
     dispatch({ type: 'LOAD_APP' })
 
     const url = apis.GET_TOP_GAMES()
@@ -46,9 +48,11 @@ export function getPrices() {
 
 export function searchGames(name) {
   return dispatch => {
+    dispatch({ type: 'CLEAR_SUGGESTIONS' })
+    dispatch({ type: 'CLEAR_GAMES' })
     dispatch({ type: 'LOAD_APP' })
 
-    const url = apis.SEARCH_GAMES(encodeURIComponent(name))
+    const url = apis.SEARCH_GAMES(encodeURIComponent(lowerCase(name)))
     fetch(url)
       .then(res => res.json())
       .then(games => {
