@@ -1,20 +1,71 @@
 import { Card, Col, Icon, Row } from 'antd'
 import React, { Component } from 'react'
+import { FormattedNumber } from 'react-intl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getTopGames } from '../actions/home'
+import { getPrices, getTopGames, searchGames } from '../actions/home'
 
 @connect(
   state => ({
     home: state.home
   }),
   dispatch => ({
-    getTopGames: bindActionCreators(getTopGames, dispatch)
+    getTopGames: bindActionCreators(getTopGames, dispatch),
+    getPrices  : bindActionCreators(getPrices, dispatch),
+    searchGames: bindActionCreators(searchGames, dispatch)
   })
 )
 export default class Home extends Component {
   componentDidMount() {
-    this.props.getTopGames()
+    const name = this.props.location.query.name
+    if (name) {
+      this.props.searchGames(name)
+    } else {
+      this.props.getTopGames()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.home.get('hasPrices')) {
+      nextProps.getPrices()
+    }
+
+    const name = nextProps.location.query.name
+    if (this.props.location.query.name !== name) {
+      nextProps.searchGames(name)
+    }
+  }
+
+  generatePriceBlock = (discountPercent, oldPrice, newPrice) => {
+    if (discountPercent === 0) {
+      return (
+        <div className='prices-block'>
+          <div className='price'>
+            <FormattedNumber value={newPrice} style='currency' currency='USD' />
+          </div>
+        </div>
+      )
+    } else if (discountPercent > 0) {
+      return (
+        <div className='prices-block'>
+          <div className='discount-percent'>{-discountPercent}%</div>
+          <div className='prices'>
+            <div className='old-price'>
+              <FormattedNumber value={oldPrice} style='currency' currency='USD' />
+            </div>
+            <div className='new-price'>
+              <FormattedNumber value={newPrice} style='currency' currency='USD' />
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className='prices-block'>
+          <div className='free-tag'>Free</div>
+        </div>
+      )
+    }
   }
 
   render() {
@@ -24,36 +75,52 @@ export default class Home extends Component {
       <div>
         {
           this
-            .props.home.get('topGames')
+            .props.home.get('games')
             .groupBy((game, key) => ~~(key / column))
             .valueSeq()
             .map((games, key) => (
               <Row key={key} gutter={16} style={{ paddingTop: 8, paddingBottom: 8 }}>
                 {
-                  games.map((game, key) => (
-                    <Col key={key} span={24 / column}>
-                      <Card bodyStyle={{ padding: 0 }}>
-                        <div>
-                          <img alt="example" width='100%' src={game.get('headerImage')} />
-                        </div>
-                        <div className='card-game-content'>
-                          {
-                            <div className='platforms'>
-                              {game.get('pc') && <Icon className='platform-icon' type='windows' />}
-                              {game.get('mac') && <Icon className='platform-icon' type='apple' />}
-                            </div>
-                          }
-                          <div className='prices-block'>
-                            <div className='discount-percent'>70%</div>
-                            <div className='prices'>
-                              <div className='old-price'>$15.99</div>
-                              <div className='new-price'>$9.99</div>
-                            </div>
+                  games.map((game) => {
+                    const platforms = game.get('platforms')
+                    const loading = !game.get('is_free') && !this.props.home.get('hasPrices')
+
+                    let discountPercent, newPrice, oldPrice, url
+                    if (game.has('itad_price')) {
+                      discountPercent = game.getIn(['itad_price', 'price_cut'])
+                      oldPrice = game.getIn(['itad_price', 'price_old'])
+                      newPrice = game.getIn(['itad_price', 'price_new'])
+                      url = game.getIn(['itad_price', 'url'])
+                    } else {
+                      discountPercent = game.getIn(['steam_price', 'discount_percent'])
+                      oldPrice = game.getIn(['steam_price', 'initial']) / 100
+                      newPrice = game.getIn(['steam_price', 'final']) / 100
+                      url = `http://store.steampowered.com/app/${game.get('app_id')}`
+                    }
+
+                    return (
+                      <Col key={game.get('app_id')} span={24 / column}>
+                      <Card bodyStyle={{ padding: 0 }}
+                            loading={loading}>
+                        <a href={url} target='_blank'>
+                          <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
+                          <div className='card-game-content'>
+                            {
+                              <div className='platforms'>
+                                {
+                                  game.getIn(['platforms', 'windows']) &&
+                                  <Icon className='platform-icon' type='windows' />
+                                }
+                                {game.getIn(['platforms', 'mac']) && <Icon className='platform-icon' type='apple' />}
+                              </div>
+                            }
+                            {this.generatePriceBlock(discountPercent, oldPrice, newPrice)}
                           </div>
-                        </div>
+                        </a>
                       </Card>
                     </Col>
-                  ))
+                    )
+                  })
                 }
               </Row>
             ))

@@ -1,15 +1,64 @@
-import { AutoComplete, Button, Col, Icon, Input, Layout, Menu, Row, Select } from 'antd'
+import { Button, Col, Icon, Layout, Menu, Row, Select } from 'antd'
+import { List } from 'immutable'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
+import { bindActionCreators } from 'redux'
+import { getSuggestions } from '../actions/app'
 const { Header, Footer, Content } = Layout
+const Option = Select.Option
 
+@connect(
+  state => ({
+    app: state.app
+  }),
+  dispatch => ({
+    getSuggestions: bindActionCreators(getSuggestions, dispatch)
+  })
+)
 export default class App extends Component {
+  state = {
+    suggestions: List()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const suggestions = nextProps.app.get('suggestions')
+    if (this.props.app.get('suggestions') !== suggestions) {
+      this.setState({ suggestions })
+    }
+  }
+
+  handleOnSearchGame = (name) => {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout)
+    }
+
+    this.searchTimeout = setTimeout(() => this.props.getSuggestions(name), 500)
+  }
+
+  generateDataSource = () => {
+    return this.state.suggestions.map((game, key) => {
+      const name = game.get('name')
+      return (
+        <Option className='suggestions' key={key} value={name}>
+          <Link to={`?name=${encodeURIComponent(name)}`}>
+            <div>
+              <img alt={name} width='120px' src={game.get('tiny_image')} />
+              <div className='title'>{name}</div>
+            </div>
+          </Link>
+      </Option>
+      )
+    })
+  }
+
   render() {
     return (
       <Layout>
         <Header className='sub-header'>
           <Select className='currency-dropdown' size='small' defaultValue='USD'>
-            <Select.Option value='USD'>USD</Select.Option>
-            <Select.Option value='VND'>VND</Select.Option>
+            <Option value='USD'>USD</Option>
+            <Option value='VND'>VND</Option>
           </Select>
         </Header>
         <Header className='main-header'>
@@ -19,21 +68,22 @@ export default class App extends Component {
               <div className='logo-title'>Game Searcher</div>
             </Col>
             <Col span={10}>
-              <AutoComplete
+              <Select
+                combobox
+                showSearch
                 className='game-search'
                 size='large'
-                dataSource={['Game 1', 'Game 2', 'Game 3']}
                 placeholder='Find a game'
-                optionLabelProp='text'
+                notFoundContent='No result'
+                showArrow={false}
+                filterOption={false}
+                onSearch={this.handleOnSearchGame}
               >
-                <Input
-                  suffix={(
-                    <Button className='search-btn' size='large' type='primary'>
-                      <Icon type='search' />
-                    </Button>
-                  )}
-                />
-              </AutoComplete>
+                {this.generateDataSource()}
+              </Select>
+              <Button className='search-btn' size='large' type='primary'>
+                <Icon type='search' />
+              </Button>
             </Col>
             <Col span={9}>
               <Menu
@@ -60,7 +110,7 @@ export default class App extends Component {
             {this.props.children}
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Footer className='main-footer'>
           A tool to search games information including best prices
         </Footer>
       </Layout>

@@ -5,6 +5,7 @@
   "watch": [
     "app.js",
     "bin/www",
+    "apis/",
     "routes/"
   ],
   "env": {
