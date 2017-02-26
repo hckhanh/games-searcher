@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const users = require('./users')
 const games = require('./games')
-const currencies = require('./currencies')
+const rates = require('./rates')
 
 router.use('/users', users)
 
 router.use('/games', games)
 
-router.use('/currencies', currencies)
+router.use('/rates', rates)
 
 module.exports = router

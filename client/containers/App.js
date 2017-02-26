@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
-import { getSuggestions } from '../actions/app'
+import { getRates, getSuggestions, setCurrency } from '../actions/app'
 const { Header, Footer, Content } = Layout
 const Option = Select.Option
 
@@ -12,12 +12,18 @@ const Option = Select.Option
     app: state.app
   }),
   dispatch => ({
-    getSuggestions: bindActionCreators(getSuggestions, dispatch)
+    getSuggestions: bindActionCreators(getSuggestions, dispatch),
+    getRates      : bindActionCreators(getRates, dispatch),
+    setCurrency   : bindActionCreators(setCurrency, dispatch)
   })
 )
 export default class App extends Component {
   state = {
     currentName: null
+  }
+
+  componentDidMount() {
+    this.props.getRates()
   }
 
   handleOnSuggestGames = (name) => {
@@ -54,13 +60,23 @@ export default class App extends Component {
   }
 
   render() {
+    const currency = this.props.app.get('currency')
     return (
       <Layout>
         <Header className='sub-header'>
           <div className='header-content'>
-            <Select className='currency-dropdown' size='small' defaultValue='USD'>
-              <Option value='USD'>USD</Option>
-              <Option value='VND'>VND</Option>
+            <Select
+              showSearch
+              className='currency-dropdown'
+              size='small'
+              value={currency}
+              defaultValue={currency}
+              onSelect={(currency) => this.props.setCurrency(currency)}
+            >
+              {
+                this.props.app.get('rates')
+                    .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
+              }
             </Select>
           </div>
         </Header>

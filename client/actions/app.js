@@ -14,3 +14,22 @@ export function getSuggestions(name) {
       })
   }
 }
+
+export function getRates() {
+  return dispatch => {
+    const url = apis.GET_RATES()
+    fetch(url)
+      .then(res => res.json())
+      .then(rates => {
+        dispatch({ type: 'GET_RATES_SUCCESS', rates })
+      })
+      .catch(error => {
+        dispatch({ type: 'FETCH_ERROR', url: url })
+        console.error(error, console.trace())
+      })
+  }
+}
+
+export function setCurrency(currency) {
+  return { type: 'SET_CURRENCY', currency }
+}

@@ -1,22 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const cache = require('../cache')
 const fetch = require('node-fetch')
 const oerAPI = require('../apis/oer')
-const cache = require('../cache')
 
 router.get('/', function (req, res, next) {
-  const currencies = cache.get('CURRENCIES')
-  if (currencies) {
-    return res.send(currencies)
+  const rates = cache.get('RATES')
+  if (rates) {
+    return res.send(rates)
   }
 
   fetch(oerAPI.EXCHANGE_RATES)
     .then(res => res.json())
-    .then(currencies => {
-      currencies = { base: currencies.base, rates: currencies.rates }
-      cache.set('CURRENCIES', currencies, 3600)
+    .then(rates => {
+      rates = { base: rates.base, rates: rates.rates }
+      cache.set('RATES', rates, 3600)
 
-      res.send(currencies)
+      res.send(rates)
     })
     .catch(error => {
       next(error)
