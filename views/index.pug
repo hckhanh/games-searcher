@@ -1,4 +1,13 @@
 extends layout
 
+block meta
+  meta(name='fb:app_id' content=FACEBOOK_APP_ID)
+  meta(name='og:url' content=APP_URL)
+  meta(name='og:type' content='website')
+  meta(name='og:title' content=APP_TITLE)
+  meta(name='og:description' content=APP_DESCRIPTION)
+  meta(name='og:image' content='/cover.js')
+  link(href="/index.css" rel="stylesheet")
+
 block content
-  div(id='index')
+  script(type='text/javascript' src='/index.js')

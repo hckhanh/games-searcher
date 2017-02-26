@@ -94,7 +94,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'views/index.pug'
+      template: 'views/layout.pug'
     }),
 
     new ExtractTextPlugin('index.css')
