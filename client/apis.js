@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL
+
 export default {
   GET_TOP_GAMES  : () => `${API_URL}/games`,
   GET_PRICES     : appIds => `${API_URL}/games/prices?appIds=${appIds}`,
