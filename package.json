@@ -1,11 +1,15 @@
 {
   "name": "games-searcher",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "engines": {
+    "node": "7.6.0"
+  },
   "private": true,
   "scripts": {
     "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"nodemon --config nodemon.json ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
     "dev-server": "cross-env DEBUG=games-searcher:* PORT=4000 node %NODE_DEBUG_OPTION% ./bin/www",
     "build": "webpack --config prod.config.js",
+    "heroku-postbuild": "npm run build",
     "start": "cross-env NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
