@@ -1,5 +1,6 @@
 import { List, Map } from 'immutable'
 import fx from 'money'
+fx.base = 'USD'
 
 function getCurrencyFromLocal() {
   return localStorage.getItem('currency') || 'USD'

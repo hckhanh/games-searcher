@@ -69,13 +69,14 @@ export default class App extends Component {
               showSearch
               className='currency-dropdown'
               size='small'
+              dropdownMatchSelectWidth={false}
               value={currency}
               defaultValue={currency}
-              onSelect={(currency) => this.props.setCurrency(currency)}
+              onSelect={(currency) => this.props.setCurrency(currency.toUpperCase())}
             >
               {
                 this.props.app.get('rates')
-                    .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
+                    .map(rate => <Option key={rate} value={rate.toLowerCase()}>{rate}</Option>)
               }
             </Select>
           </div>
