@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"nodemon --config nodemon.json ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
-    "dev-server": "cross-env DEBUG=games-searcher:* PORT=4000 node %NODE_DEBUG_OPTION% ./bin/www"
+    "dev-server": "cross-env DEBUG=games-searcher:* PORT=4000 node %NODE_DEBUG_OPTION% ./bin/www",
+    "build": "webpack --config prod.config.js",
+    "start": "cross-env NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "antd": "^2.7.2",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.1",
     "body-parser": "~1.16.0",
+    "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "es6-promise": "^4.0.5",
