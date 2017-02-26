@@ -126,7 +126,7 @@ export default class App extends Component {
           </div>
         </Content>
         <Footer className='main-footer'>
-          A tool to search games information including best prices
+          Made with <Icon type="heart" /> by <a href='https://github.com/hckhanh'>@hckhanh</a>
         </Footer>
       </Layout>
     )
