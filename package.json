@@ -1,6 +1,6 @@
 {
   "name": "games-searcher",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "engines": {
     "node": "7.6.0"
   },
