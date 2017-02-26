@@ -1,6 +1,5 @@
 const { resolve } = require('path')
 const { readFileSync } = require('fs')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -29,10 +28,6 @@ module.exports = {
         test   : /\.jsx?$/,
         use    : ['babel-loader'],
         exclude: [/node_modules/]
-      },
-      {
-        test: /\.pug$/,
-        use : ['pug-loader']
       },
       {
         test: /\.(sass|s?css)$/,
@@ -74,10 +69,6 @@ module.exports = {
         reduce_vars  : true
       },
       comments: false
-    }),
-
-    new HtmlWebpackPlugin({
-      template: 'views/index.pug'
     }),
 
     new ExtractTextPlugin('index.css'),
