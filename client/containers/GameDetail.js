@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { updateNumber } from '../actions/index'
+import { updateNumber } from '../actions/home'
 
-@connect(
-  state => ({
-    home: state.home
-  }),
-  dispatch => ({
-    updateNumber: bindActionCreators(updateNumber, dispatch)
-  })
-)
+// @connect(
+//   state => ({
+//     home: state.home
+//   }),
+//   dispatch => ({
+//     updateNumber: bindActionCreators(updateNumber, dispatch)
+//   })
+// )
 export default class GameDetails extends Component {
   handleUpdateNumber = () => {
     console.log(this.props)
-    this.props.updateNumber(this.props.home.get('number') + 20)
+    // this.props.updateNumber(this.props.home.get('number') + 20)
   }
 
   componentDidMount() {
@@ -33,7 +31,6 @@ export default class GameDetails extends Component {
     return (
       <div>
         <h2>Game Details home</h2>
-        <div>{this.props.home.get('number')}</div>
         <button onClick={this.handleUpdateNumber}>Update number</button>
       </div>
     )

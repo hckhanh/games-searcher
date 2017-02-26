@@ -1,7 +1,10 @@
 const { resolve } = require('path')
+const { readFileSync } = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const license = readFileSync('./LICENSE')
 
 module.exports = {
   entry  : [
@@ -19,7 +22,7 @@ module.exports = {
     path      : resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  devtool: 'nosources-source-map',
+  devtool: 'cheap-module-source-map',
   module : {
     rules: [
       {
@@ -65,8 +68,8 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      beautify: true,
       compress: {
+        warnings     : false,
         collapse_vars: true,
         reduce_vars  : true
       },
@@ -77,6 +80,9 @@ module.exports = {
       template: 'views/index.pug'
     }),
 
-    new ExtractTextPlugin('index.css')
+    new ExtractTextPlugin('index.css'),
+
+    new webpack.BannerPlugin({ banner: license.toString() })
+    // Add license to all css,js files
   ]
 }
