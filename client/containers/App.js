@@ -41,7 +41,7 @@ export default class App extends Component {
     }
   }
 
-  generateDataSource = () => {
+  generateGameData = () => {
     return this
       .props.app.get('suggestions')
       .map((game, key) => {
@@ -72,11 +72,12 @@ export default class App extends Component {
               dropdownMatchSelectWidth={false}
               value={currency}
               defaultValue={currency}
-              onSelect={(currency) => this.props.setCurrency(currency.toUpperCase())}
+              onSelect={this.props.setCurrency}
+              filterOption={(currency, option) => option.props.value.toLowerCase().indexOf(currency.toLowerCase()) >= 0}
             >
               {
                 this.props.app.get('rates')
-                    .map(rate => <Option key={rate} value={rate.toLowerCase()}>{rate}</Option>)
+                    .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
               }
             </Select>
           </div>
@@ -105,7 +106,7 @@ export default class App extends Component {
                   onSearch={this.handleOnSuggestGames}
                   onSelect={this.handleOnSearchGames}
                 >
-                  {this.generateDataSource()}
+                  {this.generateGameData()}
                 </Select>
                 <Button className='search-btn'
                         size='large'
