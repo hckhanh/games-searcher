@@ -1,15 +1,14 @@
 import { Card, Col, Icon, Row, Spin } from 'antd'
 import React, { Component } from 'react'
-import { FormattedNumber } from 'react-intl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPrices, getTopGames, searchGames } from '../actions/home'
-const fx = require('money')
+import Currency from '../component/Currency'
 
 @connect(
   state => ({
-    home: state.home,
-    app : state.app
+    app : state.app,
+    home: state.home
   }),
   dispatch => ({
     getTopGames: bindActionCreators(getTopGames, dispatch),
@@ -43,17 +42,11 @@ export default class Home extends Component {
   }
 
   generatePriceBlock = (discountPercent, oldPrice, newPrice) => {
-    const currency = this.props.app.get('currency')
-    if (fx.base !== currency && !isNaN(oldPrice)) {
-      oldPrice = fx(oldPrice).from(fx.base).to(currency)
-      newPrice = fx(newPrice).from(fx.base).to(currency)
-    }
-
     if (discountPercent === 0) {
       return (
         <div className='prices-block'>
           <div className='price'>
-            <FormattedNumber value={newPrice} style='currency' currency={currency} />
+            <Currency price={newPrice} />
           </div>
         </div>
       )
@@ -63,10 +56,10 @@ export default class Home extends Component {
           <div className='discount-percent'>{-discountPercent}%</div>
           <div className='prices'>
             <div className='old-price'>
-              <FormattedNumber value={oldPrice} style='currency' currency={currency} />
+              <Currency price={oldPrice} />
             </div>
             <div className='new-price'>
-              <FormattedNumber value={newPrice} style='currency' currency={currency} />
+              <Currency price={newPrice} />
             </div>
           </div>
         </div>

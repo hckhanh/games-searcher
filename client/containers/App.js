@@ -3,13 +3,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
-import { getRates, getSuggestions, setCurrency } from '../actions/app'
+import { getSuggestions } from '../actions/app'
+import { getRates, setCurrency } from '../actions/currency'
 const { Header, Footer, Content } = Layout
 const Option = Select.Option
 
 @connect(
   state => ({
-    app: state.app
+    app     : state.app,
+    currency: state.currency
   }),
   dispatch => ({
     getSuggestions: bindActionCreators(getSuggestions, dispatch),
@@ -60,7 +62,7 @@ export default class App extends Component {
   }
 
   render() {
-    const currency = this.props.app.get('currency')
+    const currency = this.props.currency.get('currency')
     return (
       <Layout>
         <Header className='sub-header'>
@@ -71,12 +73,12 @@ export default class App extends Component {
               size='small'
               dropdownMatchSelectWidth={false}
               value={currency}
-              defaultValue={currency}
               onSelect={this.props.setCurrency}
               filterOption={(currency, option) => option.props.value.toLowerCase().indexOf(currency.toLowerCase()) >= 0}
             >
               {
-                this.props.app.get('rates')
+                this.props.currency.getIn(['exchangeRates', 'rates'])
+                    .keySeq()
                     .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
               }
             </Select>
