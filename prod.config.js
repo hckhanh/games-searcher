@@ -52,8 +52,10 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-        API_URL : JSON.stringify('/api')
+        NODE_ENV         : JSON.stringify('production'),
+        API_URL          : JSON.stringify('/api'),
+        OPBEAT_ORG_ID    : JSON.stringify(process.env.OPBEAT_ORG_ID),
+        OPBEAT_WEB_APP_ID: JSON.stringify(process.env.OPBEAT_WEB_APP_ID)
       }
     }),
 

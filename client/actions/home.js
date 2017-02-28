@@ -17,7 +17,6 @@ export function getTopGames() {
       .catch(error => {
         dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'FETCH_ERROR', error, url })
-        console.error(error)
       })
   }
 }
@@ -38,7 +37,6 @@ export function getPrices() {
         })
         .catch(error => {
           dispatch({ type: 'FETCH_ERROR', error, url })
-          console.error(error)
         })
     } else {
       dispatch({ type: 'GET_PRICES_SUCCESS', prices: List() })
@@ -62,7 +60,6 @@ export function searchGames(name) {
       .catch(error => {
         dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'FETCH_ERROR', error, url })
-        console.error(error)
       })
   }
 }

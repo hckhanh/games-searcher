@@ -13,7 +13,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "antd": "^2.7.2",
+    "antd": "^2.7.3",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.1",
     "babel-plugin-add-react-displayname": "0.0.4",
@@ -40,8 +40,9 @@
     "morgan": "~1.8.1",
     "node-fetch": "^1.6.3",
     "node-sass": "^4.5.0",
-    "opbeat-react": "^2.1.7",
-    "pug": "^2.0.0-beta11",
+    "opbeat": "^4.11.1",
+    "opbeat-react": "^3.0.0rc2",
+    "pug": "^2.0.0-beta9",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-helmet": "^4.0.0",

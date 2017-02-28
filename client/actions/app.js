@@ -10,7 +10,6 @@ export function getSuggestions(name) {
       })
       .catch(error => {
         dispatch({ type: 'FETCH_ERROR', error, url })
-        console.error(error)
       })
   }
 }

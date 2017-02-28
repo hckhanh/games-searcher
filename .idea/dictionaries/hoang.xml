@@ -4,12 +4,14 @@
       <w>antd</w>
       <w>apis</w>
       <w>devtool</w>
+      <w>displayname</w>
       <w>dropdown</w>
       <w>itad</w>
       <w>lodash</w>
       <w>navbar</w>
       <w>noninfringement</w>
       <w>nosources</w>
+      <w>opbeat</w>
     </words>
   </dictionary>
 </component>

@@ -10,7 +10,6 @@ export function getRates() {
       })
       .catch(error => {
         dispatch({ type: 'FETCH_ERROR', error, url })
-        console.error(error)
       })
   }
 }

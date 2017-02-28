@@ -1,4 +1,5 @@
 import { List, Map } from 'immutable'
+import { captureError, setExtraContext } from 'opbeat-react'
 
 const INITIAL_STATE = Map({
   loading    : true,
@@ -15,6 +16,10 @@ export default function (state = INITIAL_STATE, action) {
       return state.merge({ loading: true })
     case 'LOAD_APP_DONE':
       return state.merge({ loading: false })
+    case 'FETCH_ERROR':
+      setExtraContext({ api: action.url })
+      captureError(action.error)
+      return state
     default:
       return state
   }

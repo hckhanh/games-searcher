@@ -1,5 +1,6 @@
 import { LocaleProvider } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US'
+import { wrapRouter } from 'opbeat-react'
 import React from 'react'
 import { AppContainer } from 'react-hot-loader'
 import { IntlProvider } from 'react-intl'
@@ -8,18 +9,19 @@ import { browserHistory, IndexRoute, Route, Router } from 'react-router'
 import App from './containers/App'
 import GameDetail from './containers/GameDetail'
 import Home from './containers/Home'
+const OpbeatRouter = wrapRouter(Router)
 
 export default ({ store }) => (
   <AppContainer>
     <LocaleProvider locale={enUS}>
       <IntlProvider locale='en'>
         <Provider store={store}>
-          <Router history={browserHistory}>
+          <OpbeatRouter history={browserHistory}>
             <Route path='/' component={App}>
               <IndexRoute component={Home} />
               <Route path='games/:id' component={GameDetail} />
             </Route>
-          </Router>
+          </OpbeatRouter>
         </Provider>
       </IntlProvider>
     </LocaleProvider>
