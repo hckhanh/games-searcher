@@ -89,7 +89,11 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        API_URL: JSON.stringify('//localhost:4000/api')
+        API_URL        : JSON.stringify('//localhost:4000/api'),
+        FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
+        APP_TITLE      : JSON.stringify(process.env.APP_TITLE),
+        APP_DESCRIPTION: JSON.stringify(process.env.APP_DESCRIPTION),
+        APP_IMAGE      : JSON.stringify(process.env.APP_IMAGE)
       }
     }),
 
