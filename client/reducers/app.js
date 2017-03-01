@@ -1,5 +1,8 @@
+import { message } from 'antd'
 import { List, Map } from 'immutable'
 import { captureError, setExtraContext } from 'opbeat-react'
+import * as React from 'react'
+import RestartMessage from '../component/RestartMessage'
 
 const INITIAL_STATE = Map({
   loading    : true,
@@ -19,6 +22,7 @@ export default function (state = INITIAL_STATE, action) {
     case 'FETCH_ERROR':
       setExtraContext({ api: action.url })
       captureError(action.error)
+      message.error(<RestartMessage />, 1000)
       return state
     default:
       return state
