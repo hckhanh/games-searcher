@@ -1,6 +1,5 @@
 import { Button, Icon, Layout, Menu, Select } from 'antd'
 import React, { Component } from 'react'
-import Helmet from 'react-helmet/es/Helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
@@ -44,7 +43,7 @@ export default class App extends Component {
     }
   }
 
-  generateMainHeader = (currency) => {
+  generateMainHeader = () => {
     return (
       <Header className='main-header'>
         <div className='header-content'>
@@ -102,7 +101,7 @@ export default class App extends Component {
               className='currency-dropdown'
               size='small'
               dropdownMatchSelectWidth={false}
-              value={currency}
+              value={this.props.currency.get('currency')}
               onSelect={this.props.setCurrency}
               filterOption={(currency, option) => option.props.value.toLowerCase().indexOf(currency.toLowerCase()) >= 0}
             >
@@ -137,28 +136,10 @@ export default class App extends Component {
       })
   }
 
-  generateMetaData = () => {
-    return [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      { property: 'fb:app_id', content: process.env.FACEBOOK_APP_ID },
-      { property: 'og:url', content: location.href },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: process.env.APP_TITLE },
-      { property: 'og:site_name', content: process.env.APP_TITLE },
-      { property: 'og:description', content: process.env.APP_DESCRIPTION },
-      { property: 'og:image', content: process.env.APP_IMAGE }
-    ]
-  }
-
   render() {
-    const currency = this.props.currency.get('currency')
     return (
       <Layout>
-        <Helmet
-          title={process.env.APP_TITLE}
-          meta={this.generateMetaData()}
-        />
-        {this.generateMainHeader(currency)}
+        {this.generateMainHeader()}
         <Content>
           <div className='main-content'>
             {this.props.children}

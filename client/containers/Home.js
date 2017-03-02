@@ -1,6 +1,5 @@
 import { Card, Col, Icon, Row, Spin } from 'antd'
 import React, { Component } from 'react'
-import Helmet from 'react-helmet/es/Helmet'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPrices, getTopGames, searchGames } from '../actions/home'
@@ -74,26 +73,11 @@ export default class Home extends Component {
     }
   }
 
-  generateMetaData = (searchName) => {
-    return [
-      { property: 'og:title', content: `${searchName} on ${process.env.APP_TITLE}` }
-    ]
-  }
-
   render() {
     const column = 4
-    const searchName = this.props.location.query.name
 
     return (
       <div>
-        {
-          searchName && (
-            <Helmet
-              title={`${searchName} - ${process.env.APP_TITLE}`}
-              meta={this.generateMetaData(searchName)}
-            />
-          )
-        }
         <Spin className='spin-loading' spinning={this.props.app.get('loading')} tip='Patient is good for you' />
         {
           this

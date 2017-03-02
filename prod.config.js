@@ -55,9 +55,6 @@ module.exports = {
         NODE_ENV         : JSON.stringify('production'),
         API_URL          : JSON.stringify('/api'),
         APP_TITLE        : JSON.stringify(process.env.APP_TITLE),
-        APP_DESCRIPTION  : JSON.stringify(process.env.APP_DESCRIPTION),
-        APP_IMAGE        : JSON.stringify(process.env.APP_IMAGE),
-        FACEBOOK_APP_ID  : JSON.stringify(process.env.FACEBOOK_APP_ID),
         OPBEAT_ORG_ID    : JSON.stringify(process.env.OPBEAT_ORG_ID),
         OPBEAT_WEB_APP_ID: JSON.stringify(process.env.OPBEAT_WEB_APP_ID)
       }

@@ -1,6 +1,12 @@
 extends layout
 
 block head
+  meta(property='fb:app_id' content=FACEBOOK_APP_ID)
+  meta(property='og:url' content=APP_URL)
+  meta(property='og:type' content='website')
+  meta(property='og:title' content=APP_TITLE)
+  meta(property='og:description' content=APP_DESCRIPTION)
+  meta(property='og:image' content=APP_IMAGE)
   link(href='/index.css' rel='stylesheet')
 
 block content
