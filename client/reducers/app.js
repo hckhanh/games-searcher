@@ -23,6 +23,7 @@ export default function (state = INITIAL_STATE, action) {
       setExtraContext({ api: action.url })
       captureError(action.error)
       message.error(<RestartMessage />, 1000)
+      console.error(action.error)
       return state
     default:
       return state

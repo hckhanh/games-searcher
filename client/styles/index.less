@@ -33,19 +33,39 @@
 
 .main-header {
   height : 70px !important;
+  @media screen and (max-width : 991px) {
+    height : initial !important;
+  }
   .header-content {
     max-width : 1180px;
     margin    : 0 auto;
+    @media screen and (max-width : 1200px) {
+      padding : 0 16px;
+    }
     .top-menu-right {
       display          : inline-block;
       vertical-align   : middle;
       background-color : #101821 !important;
     }
     .search {
-      display     : inline-block;
-      margin-left : 20px;
+      display : inline-block;
+      @media screen and (max-width : 995px) {
+        width : 100%;
+      }
+      @media screen and (max-width : 768px) {
+        padding-right : 12px;
+      }
+      @media screen and (max-width : 320px) {
+        padding-right : 34px;
+      }
       .game-search {
         width          : 250px;
+        @media screen and (max-width : 995px) {
+          width : 87%;
+        }
+        @media screen and (max-width : 767px) {
+          width : 95%;
+        }
         vertical-align : middle !important;
         .ant-select-selection.ant-select-selection--single {
           border-radius : 4px 0 0 4px;
@@ -55,6 +75,10 @@
       .search-btn {
         vertical-align : middle;
         border-radius  : 0 4px 4px 0;
+        @media screen and (max-width : 1190px) {
+          position : absolute;
+          top      : 18px;
+        }
       }
     }
     .right-items {
@@ -62,6 +86,14 @@
       .currency-dropdown {
         width          : 60px;
         vertical-align : middle;
+      }
+      @media screen and (max-width : 454px) {
+        float : none ;
+        .ant-menu-item {
+          .menu-text {
+            display : none;
+          }
+        }
       }
     }
   }
@@ -174,11 +206,17 @@
 
 .ant-card.ant-card-loading {
   height : 195px;
+  @media screen and (max-width : 1199px) {
+    height : 170px;
+  }
+  @media screen and (max-width : 991px) {
+    height : 231px;
+  }
 }
 
 .ant-card.ant-card-bordered {
-  background-image : url('images/background_item.jpg');
-  border-color     : #1B2838;
+  background   : url('images/background_item.jpg') center / cover no-repeat;
+  border-color : #1B2838;
 }
 
 .ant-layout-content {
@@ -188,6 +226,9 @@
     max-width : 1180px;
     margin    : 0 auto;
     padding   : 24px 0;
+    @media screen and (max-width : 1200px) {
+      padding : 24px 16px;
+    }
   }
 }
 
@@ -241,4 +282,8 @@
       color : #8F98A0;
     }
   }
+}
+
+.game-item {
+  padding : 8px 0;
 }

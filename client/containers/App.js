@@ -1,4 +1,4 @@
-import { Button, Icon, Layout, Menu, Select } from 'antd'
+import { Button, Col, Icon, Layout, Menu, Row, Select } from 'antd'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -56,77 +56,86 @@ export default class App extends Component {
     return (
       <Header className='main-header'>
         <div className='header-content'>
-          <Link className='logo' to='/'>
-            <div className='logo-icon' />
-            <div className='logo-title'>{process.env.APP_TITLE}</div>
-          </Link>
-          <div className='search'>
-            <Select
-              className='game-search'
-              combobox
-              showSearch
-              allowClear
-              size='large'
-              placeholder='Find a game'
-              notFoundContent='No result'
-              dropdownMatchSelectWidth={false}
-              showArrow={false}
-              filterOption={false}
-              onSearch={this.handleOnSuggestGames}
-              onSelect={this.handleOnSearchGames}
-            >
-              {this.generateGameData()}
+          <Row gutter={16}>
+          <Col xs={24} sm={12} md={6} lg={5}>
+            <Link className='logo' to='/'>
+              <div className='logo-icon' />
+              <div className='logo-title'>{process.env.APP_TITLE}</div>
+            </Link>
+          </Col>
+          <Col xs={24} sm={12} md={6} lg={7}>
+            <div className='search'>
+              <Select
+                className='game-search'
+                combobox
+                showSearch
+                allowClear
+                size='large'
+                placeholder='Find a game'
+                notFoundContent='No result'
+                dropdownMatchSelectWidth={false}
+                showArrow={false}
+                filterOption={false}
+                onSearch={this.handleOnSuggestGames}
+                onSelect={this.handleOnSearchGames}
+              >
+                {this.generateGameData()}
+              </Select>
+              <Button
+                className='search-btn'
+                size='large'
+                type='primary'
+                onClick={() => this.handleOnSearchGames(this.state.currentName)}
+              >
+                <Icon type='search' />
+              </Button>
+            </div>
+          </Col>
+          <Col xs={24} sm={24} md={12} lg={12}>
+            <div className='right-items'>
+              <Menu
+                className='top-menu-right'
+                theme='dark'
+                mode='horizontal'
+                onClick={this.handleOnMenuClick}
+              >
+                <Menu.Item key='share'>
+                  <Icon type="like" />
+                  <span className='menu-text'>Share on Facebook</span>
+                </Menu.Item>
+                <Menu.Item key='donate'>
+                  <a href='https://paypal.me/hckhanh/5' target='_blank'>
+                    <Icon type="heart" />
+                    <span className='menu-text'>Donate</span>
+                  </a>
+                </Menu.Item>
+                <Menu.Item key='github'>
+                  <a href='https://github.com/hckhanh/games-searcher' target='_blank'>
+                    <Icon type="github" />
+                    <span className='menu-text'>GitHub</span>
+                  </a>
+                </Menu.Item>
+              </Menu>
+              <Select
+                showSearch
+                className='currency-dropdown'
+                size='small'
+                dropdownMatchSelectWidth={false}
+                value={this.props.currency.get('currency')}
+                onSelect={this.props.setCurrency}
+                filterOption={(currency, option) => option.props.value.toLowerCase()
+                                                          .indexOf(currency.toLowerCase()) >= 0}
+              >
+              {
+                this
+                  .props.currency.getIn(['exchangeRates', 'rates'])
+                  .keySeq()
+                  .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
+              }
             </Select>
-            <Button
-              className='search-btn'
-              size='large'
-              type='primary'
-              onClick={() => this.handleOnSearchGames(this.state.currentName)}
-            >
-              <Icon type='search' />
-            </Button>
-          </div>
-          <div className='right-items'>
-            <Menu
-              className='top-menu-right'
-              theme='dark'
-              mode='horizontal'
-              onClick={this.handleOnMenuClick}
-            >
-              <Menu.Item key='share'>
-                <Icon type="like" />
-                Share on Facebook
-              </Menu.Item>
-              <Menu.Item key='donate'>
-                <a href='https://paypal.me/hckhanh/5' target='_blank'>
-                  <Icon type="heart" />
-                  Donate
-                </a>
-              </Menu.Item>
-              <Menu.Item key='github'>
-                <a href='https://github.com/hckhanh/games-searcher' target='_blank'>
-                  <Icon type="github" />
-                  GitHub
-                </a>
-              </Menu.Item>
-            </Menu>
-            <Select
-              showSearch
-              className='currency-dropdown'
-              size='small'
-              dropdownMatchSelectWidth={false}
-              value={this.props.currency.get('currency')}
-              onSelect={this.props.setCurrency}
-              filterOption={(currency, option) => option.props.value.toLowerCase().indexOf(currency.toLowerCase()) >= 0}
-            >
-            {
-              this
-                .props.currency.getIn(['exchangeRates', 'rates'])
-                .keySeq()
-                .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
-            }
-          </Select>
-          </div>
+            </div>
+          </Col>
+          </Row>
         </div>
       </Header>
     )
