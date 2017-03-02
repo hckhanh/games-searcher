@@ -19,3 +19,7 @@ module.exports.set = function (key, data, ttl) {
     }, ttl * 1000)
   }
 }
+
+module.exports.clear = function () {
+  dataList = {}
+}
