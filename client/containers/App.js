@@ -43,6 +43,15 @@ export default class App extends Component {
     }
   }
 
+  handleOnMenuClick = ({ key }) => {
+    if (key === 'share') {
+      FB.ui({
+        method: 'share',
+        href  : location.href
+      }, function (response) {})
+    }
+  }
+
   generateMainHeader = () => {
     return (
       <Header className='main-header'>
@@ -82,14 +91,19 @@ export default class App extends Component {
               className='top-menu-right'
               theme='dark'
               mode='horizontal'
+              onClick={this.handleOnMenuClick}
             >
-              <Menu.Item key='1'>
+              <Menu.Item key='share'>
+                <Icon type="like" />
+                Share on Facebook
+              </Menu.Item>
+              <Menu.Item key='donate'>
                 <a href='https://paypal.me/hckhanh/5' target='_blank'>
-                  <Icon type="like" />
+                  <Icon type="heart" />
                   Donate
                 </a>
               </Menu.Item>
-              <Menu.Item key='2'>
+              <Menu.Item key='github'>
                 <a href='https://github.com/hckhanh/games-searcher' target='_blank'>
                   <Icon type="github" />
                   GitHub
