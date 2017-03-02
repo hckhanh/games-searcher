@@ -85,7 +85,7 @@ export default class Home extends Component {
             .groupBy((game, key) => ~~(key / column))
             .valueSeq()
             .map((games, key) => (
-              <Row key={key} gutter={16} style={{ paddingTop: 8, paddingBottom: 8 }}>
+              <Row key={key} gutter={16}>
                 {
                   games.map((game) => {
                     const platforms = game.get('platforms')
@@ -105,7 +105,7 @@ export default class Home extends Component {
                     }
 
                     return (
-                      <Col key={game.get('app_id')} span={24 / column}>
+                      <Col className='game-item' key={game.get('app_id')} xs={24} sm={24} md={6} lg={6}>
                         <Card bodyStyle={{ padding: 0 }}
                               loading={loading}>
                           <a href={url} target='_blank'>
