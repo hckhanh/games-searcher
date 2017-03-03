@@ -66,12 +66,13 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
+      compress : {
         warnings     : false,
         collapse_vars: true,
         reduce_vars  : true
       },
-      comments: false
+      comments : false,
+      sourceMap: true
     }),
 
     new ExtractTextPlugin('index.css'),
