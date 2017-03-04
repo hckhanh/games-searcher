@@ -11,7 +11,7 @@
     "build": "webpack --config prod.config.js",
     "heroku-postbuild": "npm run build",
     "start": "node ./bin/www",
-    "test": "cross-env DEBUG=games-searcher:* jest"
+    "test": "jest"
   },
   "dependencies": {
     "antd": "^2.7.3",
