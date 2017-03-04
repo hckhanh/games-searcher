@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.3.0",
-    "cross-env": "^3.1.4",
+    "cross-env": "3.1.4",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0",
     "pug-loader": "^2.3.0",
