@@ -1,4 +1,4 @@
-import { List } from 'immutable'
+import Immutable from 'immutable'
 import { lowerCase } from 'lodash'
 import apis from '../apis'
 
@@ -33,13 +33,17 @@ export function getPrices() {
       fetch(url)
         .then(res => res.json())
         .then(prices => {
-          dispatch({ type: 'GET_PRICES_SUCCESS', prices })
+          prices = Immutable.fromJS(prices)
+          const games = state.home.get('games').map(game => {
+            const itad_price = prices.find(price => price.get('app_id') === game.get('app_id'))
+            return itad_price ? game.merge({ itad_price }) : game
+          })
+
+          dispatch({ type: 'GET_PRICES_SUCCESS', games })
         })
         .catch(error => {
           dispatch({ type: 'FETCH_ERROR', error, url })
         })
-    } else {
-      dispatch({ type: 'GET_PRICES_SUCCESS', prices: List() })
     }
   }
 }
