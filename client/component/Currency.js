@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedNumber } from 'react-intl'
 import { connect } from 'react-redux'
+import { convertCurrency } from '../utils'
 
 @connect(
   state => ({
@@ -10,10 +11,13 @@ import { connect } from 'react-redux'
 export default class Currency extends Component {
   render() {
     const currency = this.props.currency.get('currency')
-    const unitPrice = this.props.currency.getIn(['exchangeRates', 'rates', currency])
 
     return (
-      <FormattedNumber value={this.props.price * unitPrice} style='currency' currency={currency} />
+      <FormattedNumber
+        value={convertCurrency(this.props.currency, this.props.price, this.props.fromCurrency)}
+        style='currency'
+        currency={currency}
+      />
     )
   }
 }

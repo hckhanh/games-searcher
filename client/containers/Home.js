@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPrices, getTopGames, searchGames } from '../actions/home'
 import Currency from '../component/Currency'
+import { calculateDiscount } from '../utils'
 
 @connect(
   state => ({
@@ -41,7 +42,7 @@ export default class Home extends Component {
     }
   }
 
-  generatePriceBlock = (discountPercent, oldPrice, newPrice) => {
+  generatePriceBlock = (discountPercent, oldPrice, newPrice, fromCurrency) => {
     if (discountPercent === 0) {
       return (
         <div className='prices-block'>
@@ -56,7 +57,7 @@ export default class Home extends Component {
           <div className='discount-percent'>{-discountPercent}%</div>
           <div className='prices'>
             <div className='old-price'>
-              <Currency price={oldPrice} />
+              <Currency price={oldPrice} fromCurrency={fromCurrency} />
             </div>
             <div className='new-price'>
               <Currency price={newPrice} />
@@ -91,18 +92,18 @@ export default class Home extends Component {
                     const platforms = game.get('platforms')
                     const loading = !game.get('is_free') && !this.props.home.get('hasPrices')
 
-                    let discountPercent, newPrice, oldPrice, url
+                    let newPrice, url
                     if (game.has('itad_price')) {
-                      discountPercent = game.getIn(['itad_price', 'price_cut'])
-                      oldPrice = game.getIn(['itad_price', 'price_old'])
                       newPrice = game.getIn(['itad_price', 'price_new'])
                       url = game.getIn(['itad_price', 'url'])
                     } else {
-                      discountPercent = game.getIn(['steam_price', 'discount_percent'])
-                      oldPrice = game.getIn(['steam_price', 'initial']) / 100
                       newPrice = game.getIn(['steam_price', 'final']) / 100
                       url = `http://store.steampowered.com/app/${game.get('app_id')}`
                     }
+
+                    const oldPrice = game.getIn(['steam_price', 'initial']) / 100
+                    const discountPercent = calculateDiscount(oldPrice, newPrice)
+                    const fromCurrency = game.getIn(['steam_price', 'currency'])
 
                     return (
                       <Col className='game-item' key={game.get('app_id')} xs={24} sm={24} md={6} lg={6}>
@@ -120,7 +121,7 @@ export default class Home extends Component {
                                   {game.getIn(['platforms', 'mac']) && <Icon className='platform-icon' type='apple' />}
                                 </div>
                               }
-                              {this.generatePriceBlock(discountPercent, oldPrice, newPrice)}
+                              {this.generatePriceBlock(discountPercent, oldPrice, newPrice, fromCurrency)}
                             </div>
                           </a>
                         </Card>
