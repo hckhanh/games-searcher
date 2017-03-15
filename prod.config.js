@@ -66,10 +66,15 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
+      mangle   : {
+        screw_ie8  : true,
+        keep_fnames: true
+      },
       compress : {
         warnings     : false,
         collapse_vars: true,
-        reduce_vars  : true
+        reduce_vars  : true,
+        screw_ie8    : true
       },
       comments : false,
       sourceMap: true
