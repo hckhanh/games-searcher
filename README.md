@@ -1,5 +1,7 @@
 # Project Title
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hckhanh/games-searcher.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/hckhanh/games-searcher.svg?branch=master)](https://travis-ci.org/hckhanh/games-searcher)
 [![Known Vulnerabilities](https://snyk.io/test/github/hckhanh/games-searcher/badge.svg)](https://snyk.io/test/github/hckhanh/games-searcher)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/hckhanh/5)
