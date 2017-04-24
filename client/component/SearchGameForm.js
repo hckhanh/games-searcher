@@ -63,11 +63,11 @@ export default class SearchGameForm extends Component {
       <form className='search' onSubmit={this.handleSubmitSearch}>
         <Select
           className='game-search'
-          combobox
           showSearch
           size='large'
           placeholder='Find a game'
           notFoundContent='No result'
+          mode='combobox'
           showArrow={false}
           filterOption={false}
           dropdownMatchSelectWidth={false}

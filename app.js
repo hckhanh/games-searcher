@@ -4,6 +4,7 @@ const compression = require('compression')
 const favicon = require('serve-favicon')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const opbeat = require('opbeat')
 
 const APP_URL = process.env.APP_URL
 
@@ -46,7 +47,7 @@ app.use(function (err, req, res, next) {
 
   // send error to Opbeat
   if (err.status !== 404 && env === 'production') {
-    require('opbeat').captureError(err)
+    opbeat.captureError(err)
   }
 
   // set locals, only providing error in development

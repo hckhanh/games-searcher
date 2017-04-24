@@ -1,7 +1,6 @@
 # Project Title
 
 [![Build Status](https://travis-ci.org/hckhanh/games-searcher.svg?branch=master)](https://travis-ci.org/hckhanh/games-searcher)
-[![Known Vulnerabilities](https://snyk.io/test/github/hckhanh/games-searcher/badge.svg)](https://snyk.io/test/github/hckhanh/games-searcher)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/hckhanh/5)
 
 A search tool for gamers who love best prices
@@ -30,7 +29,7 @@ See deployment for notes on how to deploy the project on a live system.
 |     APP_URL     | http://localhost:3000                                                          |
 |    APP_TITLE    | Games Searcher                                                                 |
 | APP_DESCRIPTION | A search tool for gamers who love best prices                                  |
-|    APP_IMAGE    | http://localhost:3000/public/cover.png                                         |
+|    APP_IMAGE    | http://localhost:3000/cover.png                                         |
 
 ### Run the project in development mode
 
@@ -59,8 +58,6 @@ But you will need to setup these environment variables for production:
 
 |      Variable     | Description                                       |
 |:-----------------:|---------------------------------------------------|
-|   OPBEAT_ORG_ID   | The id of organization from Opbeat                |
-| OPBEAT_WEB_APP_ID | Production app id of React.js project from Opbeat |
 |     APP_TITLE     | Games Searcher                                    |
 
 ## Deployment
@@ -84,7 +81,6 @@ So there are additional apis need to be set:
 |:--------------------:|----------------------------------------|
 |     OPBEAT_ORG_ID    | The id of organization from Opbeat     |
 |  OPBEAT_SECRET_TOKEN | Secret token of organization           |
-|   OPBEAT_WEB_APP_ID  | App id of React.js app from Opbeat     |
 | OPBEAT_SERVER_APP_ID | App id of Node.js app from Opbeat      |
 
 ## Built With
@@ -93,7 +89,7 @@ So there are additional apis need to be set:
 
 ## Versioning
 
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/hckhanh/games-searcher/tags). 
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/hckhanh/games-searcher/tags).
 
 ## Author
 

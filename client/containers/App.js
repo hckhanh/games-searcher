@@ -31,7 +31,7 @@ export default class App extends Component {
         <MenuItem key='donate'>
           <a href='https://paypal.me/hckhanh/5' target='_blank'>
             <Icon type="heart" />
-            <span className='menu-text'>Donate</span>
+            <span className='menu-text'>Buy me a coffee</span>
           </a>
         </MenuItem>
         <MenuItem key='github'>

@@ -7,7 +7,7 @@ block head
   meta(property='og:title' content=APP_TITLE)
   meta(property='og:description' content=APP_DESCRIPTION)
   meta(property='og:image' content=APP_IMAGE)
-  link(href='/index.css' rel='stylesheet')
+  link(href=APP_CSS rel='stylesheet')
   script.
     <!-- Hotjar Tracking Code for Games Searcher -->
     (function (h, o, t, j, a, r) {
@@ -41,4 +41,5 @@ block pre_content
     }(document, 'script', 'facebook-jssdk'));
 
 block content
-  script(type='text/javascript' src='/index.js')
+  script(type='text/javascript' src='vendor.js')
+  script(type='text/javascript' src=APP_JS)
