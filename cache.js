@@ -21,5 +21,12 @@ module.exports.set = function (key, data, ttl) {
 }
 
 module.exports.clear = function () {
+  for (const key in dataList) {
+    if (timeoutList.hasOwnProperty(key)) {
+      clearTimeout(timeoutList[key])
+    }
+  }
+
   dataList = {}
+  timeoutList = {}
 }

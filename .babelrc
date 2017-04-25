@@ -10,7 +10,6 @@
     "react"
   ],
   "plugins": [
-    "add-react-displayname",
     "transform-decorators-legacy",
     "react-hot-loader/babel",
     [

@@ -29,7 +29,6 @@ export default class SearchGameForm extends Component {
   }
 
   handleOnSearchGames = (name) => {
-    console.log(this.props)
     if (name) {
       browserHistory.push(`?name=${encodeURIComponent(name)}`)
     }
