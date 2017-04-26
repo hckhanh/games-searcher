@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const { readFileSync } = require('fs')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
 
@@ -97,6 +98,12 @@ module.exports = {
       },
       comments: false,
       sourceMap: true
+    }),
+
+    new OptimizeCssAssetsPlugin({
+      cssProcessorOptions: {
+        discardComments: { removeAll: true }
+      }
     }),
 
     new ExtractTextPlugin({ filename: 'index.[chunkhash].css', allChunks: true }),
