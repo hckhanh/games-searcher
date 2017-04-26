@@ -100,11 +100,7 @@ module.exports = {
       sourceMap: true
     }),
 
-    new OptimizeCssAssetsPlugin({
-      cssProcessorOptions: {
-        discardComments: { removeAll: true }
-      }
-    }),
+    new OptimizeCssAssetsPlugin(),
 
     new ExtractTextPlugin({ filename: 'index.[chunkhash].css', allChunks: true }),
 
