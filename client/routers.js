@@ -6,7 +6,6 @@ import { IntlProvider } from 'react-intl'
 import { Provider } from 'react-redux'
 import { browserHistory, IndexRoute, Route, Router } from 'react-router'
 import App from './containers/App'
-import GameDetail from './containers/GameDetail'
 import Home from './containers/Home'
 
 export default ({ store }) => (
@@ -17,7 +16,6 @@ export default ({ store }) => (
           <Router history={browserHistory}>
             <Route path='/' component={App}>
               <IndexRoute component={Home} />
-              <Route path='games/:id' component={GameDetail} />
             </Route>
           </Router>
         </Provider>

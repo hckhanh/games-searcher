@@ -4,7 +4,8 @@ import * as React from 'react'
 import RestartMessage from '../component/RestartMessage'
 
 const INITIAL_STATE = Map({
-  loading    : true,
+  loading: true,
+  showError: false,
   suggestions: List()
 })
 
@@ -19,7 +20,10 @@ export default function (state = INITIAL_STATE, action) {
     case 'LOAD_APP_DONE':
       return state.merge({ loading: false })
     case 'FETCH_ERROR':
-      message.error(<RestartMessage />, 0)
+      if (!state.get('showError')) {
+        message.error(<RestartMessage />, 0)
+        state = state.merge({ showError: true })
+      }
       console.error(action.error)
       return state
     default:
