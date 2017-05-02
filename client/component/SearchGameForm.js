@@ -8,7 +8,7 @@ const SelectOption = Select.Option
 
 @connect(
   state => ({
-    app: state.app
+    suggestions: state.app.get('suggestions')
   }),
   dispatch => ({
     getSuggestions: bindActionCreators(getSuggestions, dispatch)
@@ -36,7 +36,7 @@ export default class SearchGameForm extends Component {
 
   generateGameData = () => {
     return this
-      .props.app.get('suggestions')
+      .props.suggestions
       .map((game, key) => {
         const name = game.get('name')
         return (

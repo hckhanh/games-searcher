@@ -8,7 +8,7 @@ import { calculateDiscount } from '../utils'
 
 @connect(
   state => ({
-    app : state.app,
+    loading: state.app.get('loading'),
     home: state.home
   }),
   dispatch => ({
@@ -79,7 +79,7 @@ export default class Home extends Component {
 
     return (
       <div>
-        <Spin className='spin-loading' spinning={this.props.app.get('loading')} tip='Patient is good for you' />
+        <Spin className='spin-loading' spinning={this.props.loading} tip='Patient is good for you' />
         {
           this
             .props.home.get('games')
