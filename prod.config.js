@@ -11,19 +11,19 @@ const license = readFileSync('./LICENSE')
 module.exports = {
   entry: {
     index: [
+      'es6-promise/auto',
+      // a polyfill of the ES6 Promise
+
+      'whatwg-fetch',
+      // window.fetch JavaScript polyfill for all browsers
+
       resolve(__dirname, 'client')
       // main index.js file of web client
     ],
     vendor: [
       'react',
-      'react-dom',
-      // React core library
-
-      'es6-promise/auto',
-      // a polyfill of the ES6 Promise
-
-      'whatwg-fetch'
-      // window.fetch JavaScript polyfill for all browsers
+      'react-dom'
+      // React core libraries
     ]
   },
   output: {
@@ -43,55 +43,21 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              minimize: true,
-              sourceMap: true
-            }
-          }
+          use: 'css-loader'
         })
       },
       {
         test: /\.s[ac]ss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true
-              }
-            }
-          ]
+          use: ['css-loader', 'sass-loader']
         })
       },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'less-loader',
-              options: {
-                sourceMap: true
-              }
-            }
-          ]
+          use: ['css-loader', 'less-loader']
         })
       },
       {

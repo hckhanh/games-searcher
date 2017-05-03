@@ -6,33 +6,40 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const DEV_SERVER_PORT = 3000
 
 module.exports = {
-  entry    : [
-    'react-hot-loader/patch',
-    // activate HMR for React
+  entry: {
+    index: [
+      'react-hot-loader/patch',
+      // activate HMR for React
 
-    `webpack-dev-server/client?http://localhost:${DEV_SERVER_PORT}`,
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
+      `webpack-dev-server/client?http://localhost:${DEV_SERVER_PORT}`,
+      // bundle the client for webpack-dev-server
+      // and connect to the provided endpoint
 
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
+      'webpack/hot/only-dev-server',
+      // bundle the client for hot reloading
+      // only- means to only hot reload for successful updates
 
-    'es6-promise/auto',
-    // a polyfill of the ES6 Promise
+      'es6-promise/auto',
+      // a polyfill of the ES6 Promise
 
-    'whatwg-fetch',
-    // window.fetch JavaScript polyfill for all browsers
+      'whatwg-fetch',
+      // window.fetch JavaScript polyfill for all browsers
 
-    resolve(__dirname, 'client')
-    // main index.js file of web client
-  ],
-  output   : {
-    filename  : 'index.js',
-    path      : resolve(__dirname, 'dist'),
+      resolve(__dirname, 'client')
+      // main index.js file of web client
+    ],
+    vendor: [
+      'react',
+      'react-dom'
+      // React core libraries
+    ]
+  },
+  output: {
+    filename: '[name].js',
+    path: resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  devtool  : 'inline-source-map',
+  devtool: 'inline-source-map',
   devServer: {
     hot: true,
     // enable HMR on the server
@@ -49,38 +56,45 @@ module.exports = {
     historyApiFallback: true
     // instead of return 404, return index.html
   },
-  module   : {
+  module: {
     rules: [
       {
-        test   : /\.jsx?$/,
-        use    : ['babel-loader'],
+        test: /\.jsx?$/,
+        use: ['babel-loader'],
         exclude: [/node_modules/]
       },
       {
         test: /\.pug$/,
-        use : ['pug-loader']
+        use: ['pug-loader']
       },
       {
-        test: /\.(sass|s?css)$/,
-        use : ExtractTextPlugin.extract({
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use     : ['css-loader', 'sass-loader']
+          use: 'css-loader'
+        })
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
         })
       },
       {
         test: /\.less$/,
-        use : ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use     : ['css-loader', 'less-loader']
+          use: ['css-loader', 'less-loader']
         })
       },
       {
         test: /\.(svg|png|jpe?g)$/,
-        use : 'file-loader?name=images/[name].[ext]'
+        use: 'file-loader?name=images/[name].[ext]'
       }
     ]
   },
-  plugins  : [
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally
 
@@ -89,9 +103,15 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        API_URL        : JSON.stringify('//localhost:4000/api'),
-        APP_TITLE      : JSON.stringify(process.env.APP_TITLE),
+        API_URL: JSON.stringify('//localhost:4000/api'),
+        APP_TITLE: JSON.stringify(process.env.APP_TITLE)
       }
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: 'vendor.js'
     }),
 
     new HtmlWebpackPlugin({
