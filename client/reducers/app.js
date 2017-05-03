@@ -1,6 +1,6 @@
 import { message } from 'antd'
 import { List, Map } from 'immutable'
-import * as React from 'react'
+import React from 'react'
 import RestartMessage from '../component/RestartMessage'
 
 const INITIAL_STATE = Map({
@@ -9,7 +9,7 @@ const INITIAL_STATE = Map({
   suggestions: List()
 })
 
-export default function (state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'GET_SUGGESTIONS_SUCCESS':
       return state.merge({ suggestions: action.suggestions })

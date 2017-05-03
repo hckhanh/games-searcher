@@ -11,8 +11,8 @@ export default class App extends Component {
     if (key === 'share') {
       FB.ui({
         method: 'share',
-        href  : location.href
-      }, function (response) {})
+        href: location.href
+      }, function(response) {})
     }
   }
 
@@ -29,7 +29,7 @@ export default class App extends Component {
           <span className='menu-text'>Share on Facebook</span>
         </MenuItem>
         <MenuItem key='donate'>
-          <a href='https://paypal.me/hckhanh/5' target='_blank'>
+          <a href='https://paypal.me/hckhanh/10' target='_blank'>
             <Icon type="heart" />
             <span className='menu-text'>Buy me a coffee</span>
           </a>

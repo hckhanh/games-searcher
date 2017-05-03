@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getRates, setCurrency } from '../actions/currency'
-const Option = Select.Option
+const SelectOption = Select.Option
 
 @connect(
   state => ({
     currency: state.currency
   }),
   dispatch => ({
-    getRates   : bindActionCreators(getRates, dispatch),
+    getRates: bindActionCreators(getRates, dispatch),
     setCurrency: bindActionCreators(setCurrency, dispatch)
   })
 )
@@ -34,7 +34,7 @@ export default class CurrencySelect extends Component {
           this
             .props.currency.getIn(['exchangeRates', 'rates'])
             .keySeq()
-            .map(rate => <Option key={rate} value={rate}>{rate}</Option>)
+            .map(rate => <SelectOption key={rate} value={rate}>{rate}</SelectOption>)
         }
       </Select>
     )

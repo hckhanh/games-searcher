@@ -13,7 +13,7 @@ import { calculateDiscount } from '../utils'
   }),
   dispatch => ({
     getTopGames: bindActionCreators(getTopGames, dispatch),
-    getPrices  : bindActionCreators(getPrices, dispatch),
+    getPrices: bindActionCreators(getPrices, dispatch),
     searchGames: bindActionCreators(searchGames, dispatch)
   })
 )
@@ -76,13 +76,14 @@ export default class Home extends Component {
 
   render() {
     const column = 4
+    const { home } = this.props
 
     return (
       <div>
-        <Spin className='spin-loading' spinning={this.props.loading} tip='Patient is good for you' />
+        <Spin className='spin-loading' spinning={this.props.loading} tip='Loading...' />
         {
-          this
-            .props.home.get('games')
+          home
+            .get('games')
             .groupBy((game, key) => ~~(key / column))
             .valueSeq()
             .map((games, key) => (
@@ -90,7 +91,7 @@ export default class Home extends Component {
                 {
                   games.map((game) => {
                     const platforms = game.get('platforms')
-                    const loading = !game.get('is_free') && !this.props.home.get('hasPrices')
+                    const loading = !game.get('is_free') && !home.get('hasPrices')
 
                     let newPrice, url
                     if (game.has('itad_price')) {
@@ -104,6 +105,7 @@ export default class Home extends Component {
                     const oldPrice = game.getIn(['steam_price', 'initial']) / 100
                     const discountPercent = calculateDiscount(oldPrice, newPrice)
                     const fromCurrency = game.getIn(['steam_price', 'currency'])
+                    const platform = game.get('platforms')
 
                     return (
                       <Col className='game-item' key={game.get('app_id')} xs={24} sm={24} md={6} lg={6}>
@@ -114,11 +116,8 @@ export default class Home extends Component {
                             <div className='card-game-content'>
                               {
                                 <div className='platforms'>
-                                  {
-                                    game.getIn(['platforms', 'windows']) &&
-                                    <Icon className='platform-icon' type='windows' />
-                                  }
-                                  {game.getIn(['platforms', 'mac']) && <Icon className='platform-icon' type='apple' />}
+                                  {platform.get('windows') && <Icon className='platform-icon' type='windows' />}
+                                  {platform.get('mac') && <Icon className='platform-icon' type='apple' />}
                                 </div>
                               }
                               {this.generatePriceBlock(discountPercent, oldPrice, newPrice, fromCurrency)}

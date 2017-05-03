@@ -23,10 +23,11 @@ export function getTopGames() {
 
 export function getPrices() {
   return (dispatch, getState) => {
-    const state = getState()
-    const appIds = state.home.get('games')
-                        .filter(game => !game.get('is_free'))
-                        .map(game => `app/${game.get('app_id')}`)
+    const home = getState().home
+    let games = home.get('games')
+    const appIds = games
+      .filter(game => !game.get('is_free'))
+      .map(game => `app/${game.get('app_id')}`)
 
     if (!appIds.isEmpty()) {
       const url = apis.GET_PRICES(encodeURIComponent(appIds.join(',')))
@@ -34,7 +35,7 @@ export function getPrices() {
         .then(res => res.json())
         .then(prices => {
           prices = Immutable.fromJS(prices)
-          const games = state.home.get('games').map(game => {
+          games = games.map(game => {
             const itad_price = prices.find(price => price.get('app_id') === game.get('app_id'))
             return itad_price ? game.merge({ itad_price }) : game
           })
