@@ -1,9 +1,8 @@
-#index {
-  height : inherit;
-  .ant-layout {
-    height           : inherit;
-    background-color : #101821;
-  }
+@import "~intro.js/introjs.css";
+@import "~intro.js/themes/introjs-flattener.css";
+
+body {
+  background-color : #1B2838 !important;
 }
 
 .logo {
@@ -16,7 +15,6 @@
     background      : url('images/logo-icon.png') no-repeat center;
     background-size : contain;
   }
-
   .logo-title {
     color       : #C6D4DF;
     font-size   : 20px;
@@ -221,7 +219,7 @@
 
 .ant-layout-content {
   background : #1B2838 url('images/body_top.png') center top no-repeat;
-  overflow: initial !important;
+  overflow   : initial !important;
   .main-content {
     width     : 100%;
     max-width : 1180px;
@@ -287,4 +285,13 @@
 
 .game-item {
   padding : 8px 0;
+}
+
+.introjs-disabled, .introjs-disabled:hover, .introjs-disabled:focus {
+  color           : #9A9A9A;
+  border-color    : #D4D4D4;
+  box-shadow      : none;
+  cursor          : default;
+  background      : #F4F4F4 none;
+  text-decoration : none;
 }

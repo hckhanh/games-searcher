@@ -1,12 +1,64 @@
-import { Col, Icon, Layout, Menu, Row } from 'antd'
+import { Col, Icon, Layout, Menu, Modal, Row } from 'antd'
+import { introJs } from 'intro.js/intro'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import CurrencySelect from '../component/CurrencySelect'
 import SearchGameForm from '../component/SearchGameForm'
 const { Header, Footer, Content } = Layout
 const MenuItem = Menu.Item
 
+@connect(
+  state => ({
+    loading: state.app.get('loading'),
+    hasPrices: state.home.get('hasPrices')
+  })
+)
 export default class App extends Component {
+  componentDidUpdate() {
+    if (!localStorage.getItem('showHints') && this.props.hasPrices) {
+      setTimeout(() => {
+        Modal.confirm({
+          title: 'First time visitor',
+          content: 'Welcome to my little demo project. Do you need a little help?',
+          onOk: () => {
+            scroll(0, 0)
+            this.showHints()
+          },
+          onCancel: () => {
+            localStorage.setItem('showHints', true)
+          },
+          okText: 'Show me',
+          cancelText: 'Skip'
+        })
+      }, 2000)
+    }
+  }
+
+  showHints = () => {
+    const intro = introJs()
+
+    intro.setOptions({
+      steps: [
+        {
+          element: '.game-search',
+          intro: 'You can search your favorite games here.'
+        },
+        {
+          element: '.currency-dropdown',
+          intro: 'You can <strong>change currency</strong> of all prices bellow.',
+          position: 'bottom-right-aligned'
+        }
+      ]
+    })
+
+    intro.onexit(function() {
+      localStorage.setItem('showHints', true)
+    })
+
+    intro.start()
+  }
+
   handleOnMenuClick = ({ key }) => {
     if (key === 'share') {
       FB.ui({
@@ -79,9 +131,13 @@ export default class App extends Component {
             {this.props.children}
           </div>
         </Content>
-        <Footer className='main-footer'>
-          Made with <Icon type="heart" /> by <a href='https://github.com/hckhanh' target='_blank'>@hckhanh</a>
-        </Footer>
+        {
+          !this.props.loading && (
+            <Footer className='main-footer'>
+              Made with <Icon type="heart" /> by <a href='https://github.com/hckhanh' target='_blank'>@hckhanh</a>
+            </Footer>
+          )
+        }
       </Layout>
     )
   }

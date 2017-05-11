@@ -2,7 +2,7 @@ import { List, Map } from 'immutable'
 
 const INITIAL_STATE = Map({
   games    : List(),
-  hasPrices: true
+  hasPrices: false
 })
 
 export default function (state = INITIAL_STATE, action) {

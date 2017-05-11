@@ -9,6 +9,7 @@
       <w>dropdown</w>
       <w>fnames</w>
       <w>heroku</w>
+      <w>introjs</w>
       <w>itad</w>
       <w>lodash</w>
       <w>navbar</w>
@@ -16,6 +17,7 @@
       <w>nosources</w>
       <w>opbeat</w>
       <w>openexchangerates</w>
+      <w>tooltiptext</w>
     </words>
   </dictionary>
 </component>
