@@ -22,6 +22,7 @@ export default class App extends Component {
           title: 'First time visitor',
           content: 'Welcome to my little demo project. Do you need a little help?',
           onOk: () => {
+            localStorage.setItem('showHints', true)
             scroll(0, 0)
             this.showHints()
           },
@@ -42,18 +43,14 @@ export default class App extends Component {
       steps: [
         {
           element: '.game-search',
-          intro: 'You can search your favorite games here.'
+          intro: 'Enter <strong>games</strong> to search here.'
         },
         {
           element: '.currency-dropdown',
-          intro: 'You can <strong>change currency</strong> of all prices bellow.',
+          intro: 'Select <strong>currency</strong> you want to apply to all prices bellow.',
           position: 'bottom-right-aligned'
         }
       ]
-    })
-
-    intro.onexit(function() {
-      localStorage.setItem('showHints', true)
     })
 
     intro.start()
