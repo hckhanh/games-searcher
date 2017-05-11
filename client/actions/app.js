@@ -1,3 +1,4 @@
+import fetch from 'axios'
 import apis from '../apis'
 
 export function getSuggestions(name) {
@@ -7,8 +8,7 @@ export function getSuggestions(name) {
     if (!state.app.get('loading')) {
       const url = apis.GET_SUGGESTIONS(encodeURIComponent(name))
       fetch(url)
-        .then(res => res.json())
-        .then(games => {
+        .then(({ data: games }) => {
           dispatch({ type: 'GET_SUGGESTIONS_SUCCESS', suggestions: games })
         })
         .catch(error => {

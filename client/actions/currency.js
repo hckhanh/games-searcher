@@ -1,11 +1,11 @@
+import fetch from 'axios'
 import apis from '../apis'
 
 export function getRates() {
   return dispatch => {
     const url = apis.GET_RATES()
     fetch(url)
-      .then(res => res.json())
-      .then(exchangeRates => {
+      .then(({ data: exchangeRates }) => {
         dispatch({ type: 'GET_RATES_SUCCESS', exchangeRates })
       })
       .catch(error => {

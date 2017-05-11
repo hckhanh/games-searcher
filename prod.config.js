@@ -10,16 +10,7 @@ const license = readFileSync('./LICENSE')
 
 module.exports = {
   entry: {
-    index: [
-      'es6-promise/auto',
-      // a polyfill of the ES6 Promise
-
-      'whatwg-fetch',
-      // window.fetch JavaScript polyfill for all browsers
-
-      resolve(__dirname, 'client')
-      // main index.js file of web client
-    ],
+    index: resolve(__dirname, 'client'), // main index.js file of web client
     vendor: [
       'react',
       'react-dom'

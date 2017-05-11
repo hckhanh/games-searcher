@@ -1,3 +1,4 @@
+import fetch from 'axios'
 import Immutable from 'immutable'
 import { lowerCase } from 'lodash'
 import apis from '../apis'
@@ -9,8 +10,7 @@ export function getTopGames() {
 
     const url = apis.GET_TOP_GAMES()
     fetch(url)
-      .then(res => res.json())
-      .then(games => {
+      .then(({ data: games }) => {
         dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'GET_GAMES_SUCCESS', games })
       })
@@ -32,8 +32,7 @@ export function getPrices() {
     if (!appIds.isEmpty()) {
       const url = apis.GET_PRICES(encodeURIComponent(appIds.join(',')))
       fetch(url)
-        .then(res => res.json())
-        .then(prices => {
+        .then(({ data: prices }) => {
           prices = Immutable.fromJS(prices)
           games = games.map(game => {
             const itad_price = prices.find(price => price.get('app_id') === game.get('app_id'))
@@ -57,8 +56,7 @@ export function searchGames(name) {
 
     const url = apis.SEARCH_GAMES(encodeURIComponent(lowerCase(name)))
     fetch(url)
-      .then(res => res.json())
-      .then(games => {
+      .then(({ data: games }) => {
         dispatch({ type: 'LOAD_APP_DONE' })
         dispatch({ type: 'GET_GAMES_SUCCESS', games })
       })
