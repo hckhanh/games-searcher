@@ -123,16 +123,18 @@ export default class App extends Component {
   }
 
   render() {
+    const { loading } = this.props
+
     return (
       <Layout>
         {this.generateMainHeader()}
-        <Content>
+        <Content className={loading && 'loading'}>
           <div className='main-content'>
             {this.props.children}
           </div>
         </Content>
         {
-          !this.props.loading && (
+          !loading && (
             <Footer className='main-footer'>
               Made with <Icon type="heart" /> by <a href='https://github.com/hckhanh' target='_blank'>@hckhanh</a>
             </Footer>
