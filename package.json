@@ -2,7 +2,7 @@
   "name": "games-searcher",
   "version": "1.0.1-beta",
   "engines": {
-    "node": "7.9.0"
+    "node": "7.10.0"
   },
   "private": true,
   "scripts": {
