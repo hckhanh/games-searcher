@@ -1,3 +1,4 @@
+@import "~antd/lib/style/themes/default.less";
 @import "~intro.js/introjs.css";
 @import "~intro.js/themes/introjs-flattener.css";
 
@@ -95,7 +96,6 @@ body {
       }
     }
   }
-
 }
 
 .main-footer {
@@ -291,8 +291,11 @@ body {
 }
 
 .introjs-tooltiptext {
-  font-family : "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size   : 13px;
+  font-family : @font-family;
+}
+
+.introjs-button {
+  font-family : @font-family;
 }
 
 .introjs-disabled, .introjs-disabled:hover, .introjs-disabled:focus {
