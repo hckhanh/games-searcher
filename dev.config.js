@@ -95,6 +95,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
 
+    new webpack.ProvidePlugin({
+      Promise: 'promise-polyfill'
+    }),
+
     new webpack.DefinePlugin({
       'process.env': {
         API_URL: JSON.stringify('//localhost:4000/api'),
