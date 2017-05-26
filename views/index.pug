@@ -10,8 +10,8 @@ block head
   link(href=APP_CSS rel='stylesheet')
   script.
     <!-- Hotjar Tracking Code for Games Searcher -->
-    (function (h, o, t, j, a, r) {
-      h.hj = h.hj || function () {(h.hj.q = h.hj.q || []).push(arguments)};
+    (function(h, o, t, j, a, r) {
+      h.hj = h.hj || function() {(h.hj.q = h.hj.q || []).push(arguments)};
       h._hjSettings = { hjid: 435587, hjsv: 5 };
       a = o.getElementsByTagName('head')[0];
       r = o.createElement('script');
@@ -22,16 +22,17 @@ block head
 
 block pre_content
   script.
-    window.fbAsyncInit = function () {
+    window.fbAsyncInit = function() {
       FB.init({
-        appId  : '#{FACEBOOK_APP_ID}',
-        xfbml  : true,
-        version: 'v2.8'
+        appId: '#{FACEBOOK_APP_ID}',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v2.9'
       });
       FB.AppEvents.logPageView();
     };
 
-    (function (d, s, id) {
+    (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s);
