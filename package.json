@@ -2,14 +2,14 @@
   "name": "games-searcher",
   "version": "1.1.0",
   "engines": {
-    "node": "7.10.0"
+    "node": "8.0.0"
   },
   "private": true,
   "scripts": {
     "dev": "concurrently --prefix \"[{name}]\" --names \"server,web\" \"nodemon --config nodemon.json ./bin/www\" \"webpack-dev-server --config dev.config.js\"",
     "dev-server": "cross-env DEBUG=games-searcher:* PORT=4000 node %NODE_DEBUG_OPTION% ./bin/www",
     "build": "webpack --config prod.config.js",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "yarn build",
     "start": "node ./bin/www",
     "test": "jest"
   },
@@ -29,7 +29,7 @@
     "chunk-manifest-webpack-plugin": "^1.0.0",
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
-    "css-loader": "^0.28.3",
+    "css-loader": "^0.28.4",
     "debug": "^2.6.8",
     "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.1.0",
@@ -38,7 +38,7 @@
     "immutable": "^3.8.1",
     "intro.js": "^2.5.0",
     "less": "^2.7.2",
-    "less-loader": "^4.0.3",
+    "less-loader": "^4.0.4",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "opbeat": "^4.14.0",
