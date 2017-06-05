@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
         })
       })
 
-      cache.set('TOP_GAMES', data, 300)
+      cache.set('TOP_GAMES', data, 604800)
 
       res.send(data)
     })
