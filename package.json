@@ -57,6 +57,7 @@
     "sass-loader": "^6.0.5",
     "serve-favicon": "^2.4.3",
     "style-loader": "^0.18.2",
+    "uglify-js": "^3.0.15",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-manifest-plugin": "^1.1.0"
