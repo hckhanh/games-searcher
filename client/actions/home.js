@@ -1,6 +1,6 @@
 import fetch from 'axios'
 import Immutable from 'immutable'
-import { lowerCase } from 'lodash'
+import { lowerCase } from 'lodash-es'
 import apis from '../apis'
 
 export function getTopGames() {

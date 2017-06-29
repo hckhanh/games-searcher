@@ -71,6 +71,7 @@ export default class App extends Component {
         className='top-menu-right'
         theme='dark'
         mode='horizontal'
+        selectable={false}
         onClick={this.handleOnMenuClick}
       >
         <MenuItem key='share'>
