@@ -19,7 +19,8 @@
         "libraryDirectory": "lib",
         "style": true
       }
-    ]
+    ],
+    "lodash"
   ],
   "env": {
     "test": {
