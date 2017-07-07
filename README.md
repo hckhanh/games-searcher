@@ -95,6 +95,10 @@ I use [SemVer](http://semver.org/) for versioning. For the versions available, s
 
 * **Khanh Hoang** - *Initial work* - [hckhanh](https://github.com/hckhanh)
 
+## Sponsor
+
+![alt text](https://camo.githubusercontent.com/42519bdd81645a575919672d19c6291696219fbf/68747470733a2f2f692e696d6775722e636f6d2f6a61674e33384a2e706e67)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
