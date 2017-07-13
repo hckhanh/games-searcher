@@ -76,6 +76,8 @@ module.exports = {
       filename: 'vendor.js'
     }),
 
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
