@@ -12,9 +12,11 @@ router.get('/', function(req, res, next) {
   }
 
   fetch(steamAPI.TOP_100_GAMES)
-    .then(({ data }) => Promise.all(Object.values(data)
-      .sort((game1, game2) => game2.ccu - game1.ccu)
-      .map(game => fetch(steamAPI.GAME_DETAIL + game.appid))))
+    .then(({ data }) => Promise.all(
+      Object
+        .values(data)
+        .sort((game1, game2) => game2.ccu - game1.ccu)
+        .map(game => fetch(steamAPI.GAME_DETAIL + game.appid))))
     .then(games => {
       let data = []
       games.forEach(({ data: game }) => {
@@ -35,6 +37,18 @@ router.get('/', function(req, res, next) {
       cache.set('TOP_GAMES', data, 604800)
 
       res.send(data)
+    })
+    .catch(error => {
+      next(error)
+    })
+})
+
+router.get('/detail/:appId', function(req, res, next) {
+  const { appId } = req.params
+  fetch(steamAPI.GAME_DETAIL + appId)
+    .then(({ data: gameDetails }) => {
+      const gameDetail = gameDetails[appId].data
+      res.send(gameDetail)
     })
     .catch(error => {
       next(error)
@@ -66,6 +80,23 @@ router.get('/prices', function(req, res, next) {
       })
 
       res.send(priceList)
+    })
+    .catch(error => {
+      next(error)
+    })
+})
+
+router.get('/prices/:appId', function(req, res, next) {
+  let plainData = []
+
+  fetch(`${itadAPI.PLAINS_BY_ID}app/${req.params.appId}`)
+    .then(({ data: plains }) => {
+      plainData = plains.data
+      return fetch(itadAPI.CURRENT_PRICES + encodeURIComponent(Object.values(plainData).join(',')))
+    })
+    .then(({ data: prices }) => {
+      const plainId = Object.values(plainData)[0]
+      res.send(prices.data[plainId].list)
     })
     .catch(error => {
       next(error)

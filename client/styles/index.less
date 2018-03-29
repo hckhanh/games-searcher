@@ -3,94 +3,94 @@
 @import "~intro.js/themes/introjs-flattener.css";
 
 body {
-  background-color : #1B2838 !important;
+  background-color: #1b2838 !important;
 }
 
 .logo {
-  display : inline-block;
-  width   : 212px;
+  display: inline-block;
+  width: 212px;
   .logo-icon {
-    width           : 50px;
-    height          : 69px;
-    float           : left;
-    background      : url('images/logo-icon.png') no-repeat center;
-    background-size : contain;
+    width: 50px;
+    height: 69px;
+    float: left;
+    background: url('images/logo-icon.png') no-repeat center;
+    background-size: contain;
   }
   .logo-title {
-    color       : #C6D4DF;
-    font-size   : 20px;
-    font-weight : bold;
-    left        : 7px;
-    position    : relative;
+    color: #d73435;
+    font-size: 20px;
+    font-weight: bold;
+    left: 7px;
+    position: relative;
   }
 }
 
 .ant-layout-header {
-  padding    : 0 !important;
-  background : #101821 !important;
+  padding: 0 !important;
+  background: #101821 !important;
 }
 
 .main-header {
-  height : 70px !important;
-  @media screen and (max-width : 991px) {
-    height : initial !important;
+  height: 70px !important;
+  @media screen and (max-width: 991px) {
+    height: initial !important;
   }
   .header-content {
-    max-width : 1180px;
-    margin    : 0 auto;
-    @media screen and (max-width : 1200px) {
-      padding : 0 16px;
+    max-width: 1180px;
+    margin: 0 auto;
+    @media screen and (max-width: 1200px) {
+      padding: 0 16px;
     }
     .top-menu-right {
-      display          : inline-block;
-      vertical-align   : middle;
-      background-color : #101821 !important;
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #101821 !important;
     }
     .search {
-      display : inline-block;
-      @media screen and (max-width : 995px) {
-        width : 100%;
+      display: inline-block;
+      @media screen and (max-width: 995px) {
+        width: 100%;
       }
-      @media screen and (max-width : 768px) {
-        padding-right : 12px;
+      @media screen and (max-width: 768px) {
+        padding-right: 12px;
       }
-      @media screen and (max-width : 320px) {
-        padding-right : 34px;
+      @media screen and (max-width: 320px) {
+        padding-right: 34px;
       }
       .game-search {
-        width          : 250px;
-        @media screen and (max-width : 995px) {
-          width : 87%;
+        width: 250px;
+        @media screen and (max-width: 995px) {
+          width: 87%;
         }
-        @media screen and (max-width : 767px) {
-          width : 95%;
+        @media screen and (max-width: 767px) {
+          width: 95%;
         }
-        vertical-align : middle !important;
+        vertical-align: middle !important;
         .ant-select-selection.ant-select-selection--single {
-          border-radius : 4px 0 0 4px;
-          border-width  : 1px 0 1px 1px;
+          border-radius: 4px 0 0 4px;
+          border-width: 1px 0 1px 1px;
         }
       }
       .search-btn {
-        vertical-align : middle;
-        border-radius  : 0 4px 4px 0;
-        @media screen and (max-width : 1190px) {
-          position : absolute;
-          top      : 18px;
+        vertical-align: middle;
+        border-radius: 0 4px 4px 0;
+        @media screen and (max-width: 1190px) {
+          position: absolute;
+          top: 18px;
         }
       }
     }
     .right-items {
-      float : right;
+      float: right;
       .currency-dropdown {
-        width          : 60px;
-        vertical-align : middle;
+        width: 60px;
+        vertical-align: middle;
       }
-      @media screen and (max-width : 454px) {
-        float : none ;
+      @media screen and (max-width: 454px) {
+        float: none ;
         .ant-menu-item {
           .menu-text {
-            display : none;
+            display: none;
           }
         }
       }
@@ -99,210 +99,319 @@ body {
 }
 
 .main-footer {
-  text-align       : center;
-  color            : #8F98A0 !important;
-  background-color : #101821;
+  text-align: center;
+  color: #8f98a0 !important;
+  background-color: #101821 !important;
   a {
-    color : #C6D4DF !important;
+    color: #c6d4df !important;
     &:hover {
-      color : white !important;
+      color: white !important;
     }
   }
 }
 
 .ant-select-dropdown {
-  background-color : #101821 !important;
+  background-color: #101821 !important;
 }
 
 .ant-select-dropdown-menu-item {
-  color : #ACDBF5 !important;
+  color: #acdbf5 !important;
 }
 
 .ant-select-dropdown-menu-item-selected,
 .ant-select-dropdown-menu-item-selected:hover,
 .ant-select-dropdown-menu-item {
-  background-color : #212D3D !important;
+  background-color: #212d3d !important;
 }
 
 .ant-select-dropdown-menu-item:hover,
 .ant-select-dropdown-menu-item-active {
   .title {
-    color : white;
+    color: white;
   }
-  color            : white !important;
-  background-color : #101821 !important;
+  color: white !important;
+  background-color: #101821 !important;
 }
 
 .platform-icon {
-  margin-right : 5px;
-  color        : #ACDBE9;
-  font-size    : 16px;
+  margin-right: 5px;
+  color: #acdbe9;
+  font-size: 16px;
 }
 
 .card-game-content {
   .platforms {
-    display  : inline-block;
-    position : relative;
-    margin   : 10px 0 10px 16px;
-    top      : 12px;
+    display: inline-block;
+    position: relative;
+    margin: 10px 0 10px 16px;
+    top: 12px;
   }
   .prices-block {
-    display : inline-block;
-    margin  : 10px 16px 10px 0;
-    float   : right;
+    display: inline-block;
+    margin: 10px 16px 10px 0;
+    float: right;
     .discount-percent {
-      vertical-align            : top;
-      line-height               : 38px;
-      display                   : inline-block;
-      font-size                 : 26px;
-      color                     : #A4D007;
-      background-color          : #4C6B22;
-      padding                   : 0 5px;
-      border-top-left-radius    : 4px;
-      border-bottom-left-radius : 4px;
+      vertical-align: top;
+      line-height: 38px;
+      display: inline-block;
+      font-size: 26px;
+      color: #a4d007;
+      background-color: #4c6b22;
+      padding: 0 5px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
     }
     .prices {
-      line-height                : 14px;
-      display                    : inline-block;
-      text-align                 : right;
-      background-color           : rgba(20, 31, 44, 0.8);
-      padding                    : 5px 10px 5px 7px;
-      border-top-right-radius    : 4px;
-      border-bottom-right-radius : 4px;
+      line-height: 14px;
+      display: inline-block;
+      text-align: right;
+      background-color: rgba(20, 31, 44, 0.8);
+      padding: 5px 10px 5px 7px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
       .old-price {
-        font-size       : 14px;
-        text-decoration : line-through;
-        color           : #577180;
+        font-size: 14px;
+        text-decoration: line-through;
+        color: #577180;
       }
       .new-price {
-        font-size : 16px;
-        color     : #ACDBF5;
+        font-size: 16px;
+        color: #acdbf5;
       }
     }
     .price {
-      vertical-align   : top;
-      line-height      : 38px;
-      display          : inline-block;
-      font-size        : 26px;
-      color            : #ACDBF5;
-      background-color : rgba(20, 31, 44, 0.8);
-      padding          : 0 5px;
-      border-radius    : 4px;
+      vertical-align: top;
+      line-height: 38px;
+      display: inline-block;
+      font-size: 26px;
+      color: #acdbf5;
+      background-color: rgba(20, 31, 44, 0.8);
+      padding: 0 5px;
+      border-radius: 4px;
     }
     .free-tag {
-      vertical-align   : top;
-      line-height      : 38px;
-      display          : inline-block;
-      font-size        : 26px;
-      color            : #A4D007;
-      background-color : #4C6B22;
-      padding          : 0 5px;
-      border-radius    : 4px;
+      vertical-align: top;
+      line-height: 38px;
+      display: inline-block;
+      font-size: 26px;
+      color: #a4d007;
+      background-color: #4c6b22;
+      padding: 0 5px;
+      border-radius: 4px;
     }
   }
 }
 
 .ant-card.ant-card-loading {
-  height : 195px;
-  @media screen and (max-width : 1199px) {
-    height : 170px;
+  height: 195px;
+  @media screen and (max-width: 1199px) {
+    height: 170px;
   }
-  @media screen and (max-width : 991px) {
-    height : 231px;
+  @media screen and (max-width: 991px) {
+    height: 231px;
   }
 }
 
 .ant-card.ant-card-bordered {
-  background   : url('images/background_item.jpg') center / cover no-repeat;
-  border-color : #1B2838;
+  background: url('images/background_item.jpg') center / cover no-repeat;
+  border-color: #1b2838;
 }
 
 .ant-layout-content {
-  background : #1B2838 url('images/body_top.png') center top no-repeat;
-  overflow   : initial !important;
+  background: #1b2838 url('images/body_top.png') center top no-repeat;
+  overflow: initial !important;
   .main-content {
-    width     : 100%;
-    max-width : 1180px;
-    margin    : 0 auto;
-    padding   : 24px 0;
-    @media screen and (max-width : 1200px) {
-      padding : 24px 16px;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 0;
+    @media screen and (max-width: 1200px) {
+      padding: 24px 16px;
     }
   }
   &.loading {
-    background : #1B2838;
+    background: #1b2838;
   }
 }
 
 .ant-menu-dark {
-  background-color    : #171A21 !important;
-  border-bottom-color : #171A21 !important;
+  background-color: #171a21 !important;
+  border-bottom-color: #171a21 !important;
 }
 
 .suggestions {
   .title {
-    display        : inline-block;
-    font-size      : 20px;
-    color          : #ACDBF5;
-    vertical-align : top;
-    line-height    : 45px;
-    margin-left    : 13px;
+    display: inline-block;
+    font-size: 20px;
+    color: #acdbf5;
+    vertical-align: top;
+    line-height: 45px;
+    margin-left: 13px;
   }
 }
 
 .ant-spin {
-  display    : block !important;
-  text-align : center !important;
-  color      : #ACDBE9 !important;
+  display: block !important;
+  text-align: center !important;
+  color: #acdbe9 !important;
   .ant-spin-dot {
-    margin : 0 auto;
+    margin: 0 auto;
     i {
-      background-color : #ACDBE9;
+      background-color: #acdbe9;
     }
   }
 }
 
 .spin-loading {
-  position    : absolute !important;
-  top         : 50%;
-  left        : 50%;
-  margin-left : -60px;
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
 }
 
 .ant-message {
-  color : #8F98A0;
-  top   : 87px !important;
+  color: #8f98a0;
+  top: 87px !important;
   a {
-    color : #C6D4DF;
+    color: #c6d4df;
     &:hover {
-      color : #FFFFFF;
+      color: #ffffff;
     }
   }
   .ant-message-notice-content {
-    background-color : #101821;
+    background-color: #101821;
     .ant-message-error .anticon {
-      color : #8F98A0;
+      color: #8f98a0;
     }
   }
 }
 
 .game-item {
-  padding : 8px 0;
+  padding: 8px 0;
 }
 
 .introjs-tooltiptext {
-  font-family : @font-family;
+  font-family: @font-family;
 }
 
 .introjs-button {
-  font-family : @font-family;
+  font-family: @font-family;
 }
 
 .introjs-disabled, .introjs-disabled:hover, .introjs-disabled:focus {
-  color           : #9A9A9A;
-  border-color    : #D4D4D4;
-  box-shadow      : none;
-  cursor          : default;
-  background      : #F4F4F4 none;
-  text-decoration : none;
+  color: #9a9a9a;
+  border-color: #d4d4d4;
+  box-shadow: none;
+  cursor: default;
+  background: #f4f4f4 none;
+  text-decoration: none;
+}
+
+.game-details {
+  font-size: 14px;
+  width: 940px;
+  margin: auto;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #acb2b8 !important;
+}
+
+.game-title {
+  color: #e9e9e9 !important;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.section {
+  margin: 25px 0;
+  color: #acb2b8 !important;
+}
+
+.section-title {
+  color: #acb2b8;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: url('images/maincol_gradient_rule.png') no-repeat left bottom;
+}
+
+.justify-content {
+  text-align: justify;
+}
+
+.data-block {
+  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 0, 0, 0.2)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#80000000', GradientType=1);
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+.clickable-image {
+  cursor: pointer;
+  width: 100%;
+}
+
+.ant-tabs {
+  color: #acb2b8 !important;
+}
+
+.data {
+  display: flex;
+}
+
+.data-label {
+  color: #556772;
+  text-transform: uppercase;
+}
+
+.data-value {
+  color: #67c1f5;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ant-table-thead {
+  th {
+    color: #ffffff !important;
+    background-color: #2a475e !important;
+  }
+}
+
+.game-store {
+  color: #c7d5e0;
+}
+
+.game-price {
+  color: #acdbf5;
+  font-weight: 700;
+}
+
+.ant-table-row:hover {
+  .game-store {
+    color: #10161b;
+  }
+
+  .game-price {
+    color: #263645;
+  }
+}
+
+.ant-table-placeholder {
+  color: #c7d5e0 !important;
+  background: unset !important;
+}
+
+.ant-modal-content {
+  border-color: #1b2838;
+  background: url('images/background_item.jpg') center / cover no-repeat;
 }
