@@ -1,6 +1,7 @@
 import { Card, Col, Icon, Row, Spin } from 'antd'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { getPrices, getTopGames, searchGames } from '../actions/home'
 import Currency from '../component/Currency'
@@ -79,7 +80,7 @@ export default class Home extends Component {
     const { home } = this.props
 
     return (
-      <div>
+      <div className='games-list'>
         <Spin className='spin-loading' spinning={this.props.loading} tip='Loading...' />
         {
           home
@@ -90,16 +91,13 @@ export default class Home extends Component {
               <Row key={key} gutter={16}>
                 {
                   games.map((game) => {
-                    const platforms = game.get('platforms')
                     const loading = !game.get('is_free') && !home.get('hasPrices')
 
-                    let newPrice, url
+                    let newPrice
                     if (game.has('itad_price')) {
                       newPrice = game.getIn(['itad_price', 'price_new'])
-                      url = game.getIn(['itad_price', 'url'])
                     } else {
                       newPrice = game.getIn(['steam_price', 'final']) / 100
-                      url = `http://store.steampowered.com/app/${game.get('app_id')}`
                     }
 
                     const oldPrice = game.getIn(['steam_price', 'initial']) / 100
@@ -109,9 +107,8 @@ export default class Home extends Component {
 
                     return (
                       <Col className='game-item' key={game.get('app_id')} xs={24} sm={24} md={6} lg={6}>
-                        <Card bodyStyle={{ padding: 0 }}
-                              loading={loading}>
-                          <a href={url} target='_blank'>
+                        <Card bodyStyle={{ padding: 0 }} loading={loading}>
+                          <Link to={game.get('app_id').toString()}>
                             <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
                             <div className='card-game-content'>
                               {
@@ -122,7 +119,7 @@ export default class Home extends Component {
                               }
                               {this.generatePriceBlock(discountPercent, oldPrice, newPrice, fromCurrency)}
                             </div>
-                          </a>
+                          </Link>
                         </Card>
                       </Col>
                     )

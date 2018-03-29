@@ -6,7 +6,8 @@ import RestartMessage from '../component/RestartMessage'
 const INITIAL_STATE = Map({
   loading: true,
   showError: false,
-  suggestions: List()
+  suggestions: List(),
+  backgroundUrl: null
 })
 
 export default function(state = INITIAL_STATE, action) {
@@ -26,6 +27,8 @@ export default function(state = INITIAL_STATE, action) {
       }
       console.error(action.error)
       return state
+    case 'UPDATE_BACKGROUND_URL':
+      return state.merge({ backgroundUrl: action.backgroundUrl })
     default:
       return state
   }

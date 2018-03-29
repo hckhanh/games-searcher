@@ -12,31 +12,11 @@ const MenuItem = Menu.Item
 @connect(
   state => ({
     loading: state.app.get('loading'),
+    backgroundUrl: state.app.get('backgroundUrl'),
     hasPrices: state.home.get('hasPrices')
   })
 )
 export default class App extends Component {
-  componentDidUpdate() {
-    if (!localStorage.getItem('showHints') && this.props.hasPrices) {
-      setTimeout(() => {
-        Modal.confirm({
-          title: 'First time visitor',
-          content: 'Welcome to my little demo project. Do you need a little help?',
-          onOk: () => {
-            localStorage.setItem('showHints', true)
-            scroll(0, 0)
-            this.showHints()
-          },
-          onCancel: () => {
-            localStorage.setItem('showHints', true)
-          },
-          okText: 'Show me',
-          cancelText: 'Skip'
-        })
-      }, 2000)
-    }
-  }
-
   showHints = () => {
     const intro = introJs()
 
@@ -124,13 +104,39 @@ export default class App extends Component {
     )
   }
 
+  componentDidUpdate() {
+    if (!localStorage.getItem('showHints') && this.props.hasPrices) {
+      setTimeout(() => {
+        Modal.confirm({
+          title: 'First time visitor',
+          content: 'Welcome to my little demo project. Do you need a little help?',
+          onOk: () => {
+            localStorage.setItem('showHints', true)
+            scroll(0, 0)
+            this.showHints()
+          },
+          onCancel: () => {
+            localStorage.setItem('showHints', true)
+          },
+          okText: 'Show me',
+          cancelText: 'Skip'
+        })
+      }, 2000)
+    }
+  }
+
   render() {
-    const { loading } = this.props
+    const { loading, backgroundUrl } = this.props
+    const backgroundStyle = {
+      backgroundImage: `url(${backgroundUrl})`,
+      backgroundPosition: 'center top',
+      backgroundRepeat: 'no-repeat'
+    }
 
     return (
       <Layout>
         {this.generateMainHeader()}
-        <Content className={loading && 'loading'}>
+        <Content className={loading && 'loading'} style={backgroundStyle}>
           <div className='main-content'>
             {this.props.children}
           </div>
