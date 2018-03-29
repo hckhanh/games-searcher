@@ -62,12 +62,6 @@ export default class App extends Component {
           <Icon type="like" />
           <span className='menu-text'>Share on Facebook</span>
         </MenuItem>
-        <MenuItem key='donate'>
-          <a href='https://paypal.me/hckhanh/10' target='_blank'>
-            <Icon type="heart" />
-            <span className='menu-text'>Buy me a coffee</span>
-          </a>
-        </MenuItem>
         <MenuItem key='github'>
           <a href='https://github.com/hckhanh/games-searcher' target='_blank'>
             <Icon type="github" />
