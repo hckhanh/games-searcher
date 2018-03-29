@@ -28,9 +28,10 @@ router.get('/', function(req, res, next) {
           app_id: gameData.steam_appid,
           name: gameData.name,
           is_free: gameData.is_free,
-          header_image: gameData.header_image,
           platforms: gameData.platforms,
-          steam_price: gameData.price_overview
+          header_image: gameData.header_image,
+          steam_price: gameData.price_overview,
+          short_description: gameData.short_description
         })
       })
 

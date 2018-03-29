@@ -1,4 +1,4 @@
-import { Card, Col, Icon, Row, Spin } from 'antd'
+import { Card, Col, Icon, Row, Spin, Tooltip } from 'antd'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -104,23 +104,27 @@ export default class Home extends Component {
                     const discountPercent = calculateDiscount(oldPrice, newPrice)
                     const fromCurrency = game.getIn(['steam_price', 'currency'])
                     const platform = game.get('platforms')
+                    const shortDescription = game.get('short_description') &&
+                      <div dangerouslySetInnerHTML={{ __html: game.get('short_description') }} />
 
                     return (
                       <Col className='game-item' key={game.get('app_id')} xs={24} sm={24} md={6} lg={6}>
-                        <Card bodyStyle={{ padding: 0 }} loading={loading}>
-                          <Link to={game.get('app_id').toString()}>
-                            <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
-                            <div className='card-game-content'>
-                              {
-                                <div className='platforms'>
-                                  {platform.get('windows') && <Icon className='platform-icon' type='windows' />}
-                                  {platform.get('mac') && <Icon className='platform-icon' type='apple' />}
-                                </div>
-                              }
-                              {this.generatePriceBlock(discountPercent, oldPrice, newPrice, fromCurrency)}
-                            </div>
-                          </Link>
-                        </Card>
+                        <Tooltip placement="rightTop" title={shortDescription}>
+                          <Card bodyStyle={{ padding: 0 }} loading={loading}>
+                            <Link to={game.get('app_id').toString()}>
+                              <img alt={game.get('name')} width='100%' src={game.get('header_image')} />
+                              <div className='card-game-content'>
+                                {
+                                  <div className='platforms'>
+                                    {platform.get('windows') && <Icon className='platform-icon' type='windows' />}
+                                    {platform.get('mac') && <Icon className='platform-icon' type='apple' />}
+                                  </div>
+                                }
+                                {this.generatePriceBlock(discountPercent, oldPrice, newPrice, fromCurrency)}
+                              </div>
+                            </Link>
+                          </Card>
+                        </Tooltip>
                       </Col>
                     )
                   })
