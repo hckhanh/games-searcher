@@ -4,10 +4,12 @@
       <w>antd</w>
       <w>apis</w>
       <w>chunkhash</w>
+      <w>clickable</w>
       <w>devtool</w>
       <w>displayname</w>
       <w>dropdown</w>
       <w>fnames</w>
+      <w>hckhanh</w>
       <w>heroku</w>
       <w>introjs</w>
       <w>itad</w>
@@ -18,7 +20,9 @@
       <w>nosources</w>
       <w>opbeat</w>
       <w>openexchangerates</w>
+      <w>thead</w>
       <w>tooltiptext</w>
+      <w>unmount</w>
     </words>
   </dictionary>
 </component>
