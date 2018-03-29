@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import CurrencySelect from '../component/CurrencySelect'
 import SearchGameForm from '../component/SearchGameForm'
+
 const { Header, Footer, Content } = Layout
 const MenuItem = Menu.Item
 
@@ -43,12 +44,15 @@ export default class App extends Component {
       steps: [
         {
           element: '.game-search',
-          intro: 'Enter <strong>games</strong> to search here.'
+          intro: 'Enter <strong>games</strong> you want to search here.'
         },
         {
           element: '.currency-dropdown',
           intro: 'Select <strong>currency</strong> you want to apply to all prices bellow.',
           position: 'bottom-right-aligned'
+        },
+        {
+          intro: 'These are about <strong>top 100</strong> games in the last 2 weeks has most players.'
         }
       ]
     })
