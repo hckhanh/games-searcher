@@ -19,30 +19,6 @@ import { calculateDiscount } from '../utils'
   })
 )
 export default class Home extends Component {
-  componentDidMount() {
-    const name = this.props.location.query.name
-    if (name) {
-      this.props.searchGames(name)
-    } else {
-      this.props.getTopGames()
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.home.get('hasPrices')) {
-      nextProps.getPrices()
-    }
-
-    const name = nextProps.location.query.name
-    if (this.props.location.query.name !== name) {
-      if (name) {
-        nextProps.searchGames(name)
-      } else {
-        this.props.getTopGames()
-      }
-    }
-  }
-
   generatePriceBlock = (discountPercent, oldPrice, newPrice, fromCurrency) => {
     if (discountPercent === 0) {
       return (
@@ -72,6 +48,30 @@ export default class Home extends Component {
           <div className='free-tag'>Free</div>
         </div>
       )
+    }
+  }
+
+  componentDidMount() {
+    const name = this.props.location.query.name
+    if (name) {
+      this.props.searchGames(name)
+    } else {
+      this.props.getTopGames()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.home.get('hasPrices')) {
+      nextProps.getPrices()
+    }
+
+    const name = nextProps.location.query.name
+    if (this.props.location.query.name !== name) {
+      if (name) {
+        nextProps.searchGames(name)
+      } else {
+        this.props.getTopGames()
+      }
     }
   }
 
