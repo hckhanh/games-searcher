@@ -70,10 +70,11 @@ export default class GameDetails extends Component {
         <h2 className='game-title'>{gameDetail.get('name')}</h2>
         <Row gutter={14}>
           <Col span={16}>
-            <div>
+            {
+              gameDetail.has('screenshots') &&
               <img className='clickable-image' src={gameDetail.getIn(['screenshots', 0, 'path_thumbnail'])}
                    onClick={this.showModal} />
-            </div>
+            }
             <Section title='Description' classNameContent='justify-content'>
               <div dangerouslySetInnerHTML={{ __html: gameDetail.get('detailed_description') }} />
             </Section>
@@ -117,7 +118,6 @@ export default class GameDetails extends Component {
                 <a href={gameDetail.get('website')} target='_blank'>{gameDetail.get('website')}</a>
               </DataRow>
             </div>
-
             {this.generatePricesTable(gameDetail, games)}
           </Col>
         </Row>
@@ -131,8 +131,7 @@ export default class GameDetails extends Component {
                     onClick={this.goNextImage}>Next</Button>
           ]}
         >
-          <img width={800}
-               src={gameDetail.get('screenshots') && gameDetail.getIn(['screenshots', imageIndex, 'path_full'])} />
+          <img width={800} src={gameDetail.getIn(['screenshots', imageIndex, 'path_full'])} />
         </Modal>
       </div>
     )
