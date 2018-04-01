@@ -43,7 +43,6 @@
     "lodash": "^4.17.4",
     "lodash-es": "^4.17.4",
     "node-sass": "^4.5.3",
-    "opbeat": "^4.14.2",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "prop-types": "^15.6.1",
