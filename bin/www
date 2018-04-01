@@ -1,22 +1,12 @@
 #!/usr/bin/env node
 
 /**
- * Setup Opbeat tracking for server
- */
-if (process.env.NODE_ENV === 'production') {
-  require('opbeat').start({
-    appId         : process.env.OPBEAT_SERVER_APP_ID,
-    organizationId: process.env.OPBEAT_ORG_ID,
-    secretToken   : process.env.OPBEAT_SECRET_TOKEN
-  })
-}
-
-/**
  * Module dependencies.
  */
 const app = require('../app')
 const debug = require('debug')('games-searcher:server')
 const http = require('http')
+const rollbar = require('../rollbar')
 
 /**
  * Get port from environment and store in Express.
@@ -81,6 +71,7 @@ function onError(error) {
       process.exit(1)
       break
     default:
+      rollbar.error(error)
       throw error
   }
 }

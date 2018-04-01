@@ -74,14 +74,13 @@ Currently, I am using Heroku to deploy the production app. You need to change th
 | APP_DESCRIPTION | A search tool for gamers who love best prices                  |
 |    APP_IMAGE    | The url of the cover image when user share the app to Facebook |
 
-I am using [Opbeat](https://opbeat.com/) service to track error from both front-end and backend sides.
+I am using [Rollbar](https://rollbar.com/) service to track error from both front-end and backend sides.
 So there are additional apis need to be set:
 
-|       Variable       | Description                            |
-|:--------------------:|----------------------------------------|
-|     OPBEAT_ORG_ID    | The id of organization from Opbeat     |
-|  OPBEAT_SECRET_TOKEN | Secret token of organization           |
-| OPBEAT_SERVER_APP_ID | App id of Node.js app from Opbeat      |
+|       Variable       | Description                                      |
+|:--------------------:|--------------------------------------------------|
+| ROLLBAR_CLIENT_TOKEN | Your server-side access token                    |
+| ROLLBAR_SERVER_TOKEN | Your client-side access token for games-searcher |
 
 ## Built With
 

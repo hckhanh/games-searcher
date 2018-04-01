@@ -4,7 +4,7 @@ const compression = require('compression')
 const favicon = require('serve-favicon')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const opbeat = require('opbeat')
+const rollbar = require('./rollbar')
 
 const APP_URL = process.env.APP_URL
 
@@ -63,9 +63,9 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   const env = req.app.get('env')
 
-  // send error to Opbeat
+  // send error to Rollbar
   if (err.status !== 404 && env === 'production') {
-    opbeat.captureError(err)
+    rollbar.error(err, req)
   }
 
   // set locals, only providing error in development

@@ -57,6 +57,7 @@
     "redux": "^3.7.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "rollbar": "^2.3.9",
     "sass-loader": "^6.0.6",
     "serve-favicon": "^2.4.3",
     "style-loader": "^0.18.2",
