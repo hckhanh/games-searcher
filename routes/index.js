@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const api = require('./api')
 
-const { FACEBOOK_APP_ID, APP_URL, APP_TITLE, APP_DESCRIPTION, APP_IMAGE } = process.env
+const { FACEBOOK_APP_ID, APP_URL, APP_TITLE, APP_DESCRIPTION, APP_IMAGE, ROLLBAR_CLIENT_TOKEN } = process.env
 
 let APP_CSS = '/index.css', APP_JS = '/index.js'
 if (process.env.NODE_ENV === 'production') {
@@ -17,6 +17,7 @@ router.get('/', function (req, res) {
   if (name) {
     return res.render('index', {
       FACEBOOK_APP_ID,
+      ROLLBAR_CLIENT_TOKEN,
       APP_URL: `${APP_URL}${req.url}`,
       APP_TITLE: `${name} on ${APP_TITLE}`,
       APP_DESCRIPTION,
@@ -28,6 +29,7 @@ router.get('/', function (req, res) {
 
   res.render('index', {
     FACEBOOK_APP_ID,
+    ROLLBAR_CLIENT_TOKEN,
     APP_URL, APP_TITLE,
     APP_DESCRIPTION,
     APP_IMAGE,
