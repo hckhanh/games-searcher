@@ -13,12 +13,8 @@ router.get('/', function(req, res, next) {
     return res.send(topGames)
   }
 
-  fetch(steamAPI.TOP_100_GAMES)
-    .then(({ data }) => Promise.all(
-      Object
-        .values(data)
-        .sort((game1, game2) => game2.ccu - game1.ccu)
-        .map(game => fetch(steamAPI.GAME_DETAIL + game.appid))))
+  fetch(steamAPI.TOP_GAMES)
+    .then(({ data }) => Promise.all(data.map(game => fetch(steamAPI.GAME_DETAIL + game.steamAppID))))
     .then(games => {
       let data = []
       games.forEach(({ data: game }) => {
