@@ -5,6 +5,8 @@ const steamAPI = require('../apis/steam')
 const itadAPI = require('../apis/itad')
 const cache = require('../cache')
 
+const TTL_IN_SECONDS = 604800 // 7 days (1 week)
+
 router.get('/', function(req, res, next) {
   const topGames = cache.get('TOP_GAMES')
   if (topGames) {
@@ -35,7 +37,7 @@ router.get('/', function(req, res, next) {
         })
       })
 
-      cache.set('TOP_GAMES', data, 604800)
+      cache.set('TOP_GAMES', data, TTL_IN_SECONDS)
 
       res.send(data)
     })
