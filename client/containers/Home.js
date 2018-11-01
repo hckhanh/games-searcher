@@ -5,12 +5,17 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { getPrices, getTopGames, searchGames } from '../actions/home'
 import Currency from '../component/Currency'
+import { createLoadingSelector } from '../reducers/loading'
 import { calculateDiscount } from '../utils'
+
+const loadingSelector = createLoadingSelector('LOAD_APP')
+const pricesLoadingSelector = createLoadingSelector('GET_PRICES')
 
 @connect(
   state => ({
-    loading: state.app.get('loading'),
-    home: state.home
+    loading: loadingSelector(state),
+    home: state.home,
+    hasPrices: !pricesLoadingSelector(state)
   }),
   dispatch => ({
     getTopGames: bindActionCreators(getTopGames, dispatch),
@@ -61,7 +66,7 @@ export default class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.home.get('hasPrices')) {
+    if (!nextProps.hasPrices) {
       nextProps.getPrices()
     }
 
@@ -77,7 +82,7 @@ export default class Home extends Component {
 
   render() {
     const column = 4
-    const { home } = this.props
+    const { home, hasPrices } = this.props
 
     return (
       <div className='games-list'>
@@ -91,7 +96,7 @@ export default class Home extends Component {
               <Row key={key} gutter={16}>
                 {
                   games.map((game) => {
-                    const loading = !game.get('is_free') && !home.get('hasPrices')
+                    const loading = !game.get('is_free') && !hasPrices
 
                     let newPrice
                     if (game.has('itad_price')) {

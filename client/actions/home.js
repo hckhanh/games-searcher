@@ -6,7 +6,8 @@ import apis from '../apis'
 export function getTopGames() {
   return dispatch => {
     dispatch({ type: 'CLEAR_GAMES' })
-    dispatch({ type: 'LOAD_APP' })
+    dispatch({ type: 'LOAD_APP_REQUEST' })
+    dispatch({ type: 'GET_GAMES_REQUEST' })
 
     const url = apis.GET_TOP_GAMES()
     fetch(url)
@@ -52,7 +53,8 @@ export function searchGames(name) {
   return dispatch => {
     dispatch({ type: 'CLEAR_SUGGESTIONS' })
     dispatch({ type: 'CLEAR_GAMES' })
-    dispatch({ type: 'LOAD_APP' })
+    dispatch({ type: 'LOAD_APP_REQUEST' })
+    dispatch({ type: 'GET_GAMES_REQUEST' })
 
     const url = apis.SEARCH_GAMES(encodeURIComponent(lowerCase(name)))
     fetch(url)

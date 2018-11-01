@@ -5,15 +5,18 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import CurrencySelect from '../component/CurrencySelect'
 import SearchGameForm from '../component/SearchGameForm'
+import { createLoadingSelector } from '../reducers/loading'
 
 const { Header, Footer, Content } = Layout
 const MenuItem = Menu.Item
+const loadingSelector = createLoadingSelector('LOAD_APP')
+const pricesLoadingSelector = createLoadingSelector('GET_PRICES')
 
 @connect(
   state => ({
-    loading: state.app.get('loading'),
+    loading: loadingSelector(state),
     backgroundUrl: state.app.get('backgroundUrl'),
-    hasPrices: state.home.get('hasPrices')
+    hasPrices: !pricesLoadingSelector(state)
   })
 )
 export default class App extends Component {

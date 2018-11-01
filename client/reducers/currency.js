@@ -1,14 +1,14 @@
 import { Map } from 'immutable'
 
 const INITIAL_STATE = Map({
-  currency     : localStorage.getItem('currency') || 'USD',
+  currency: localStorage.getItem('currency') || 'USD',
   exchangeRates: Map({
-    base : 'USD',
+    base: 'USD',
     rates: Map()
   })
 })
 
-export default function (state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'GET_RATES_SUCCESS':
       return state.merge({ exchangeRates: action.exchangeRates })

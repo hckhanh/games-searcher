@@ -6,13 +6,18 @@ import { getGameDetail, getGamePrices, resetGameDetail } from '../actions/games'
 import Currency from '../component/Currency'
 import DataRow from '../component/DataRow'
 import Section from '../component/Section'
+import { createLoadingSelector } from '../reducers/loading'
 
 const TabPane = Tabs.TabPane
 const { Column } = Table
+const gameLoadingSelector = createLoadingSelector('GET_GAME_DETAIL')
+const pricesLoadingSelector = createLoadingSelector('GET_GAME_PRICES')
 
 @connect(
   state => ({
-    games: state.games
+    games: state.games,
+    gameLoading: gameLoadingSelector(state),
+    pricesLoading: pricesLoadingSelector(state)
   }),
   dispatch => ({
     getGameDetail: bindActionCreators(getGameDetail, dispatch),
@@ -49,7 +54,7 @@ export default class GameDetails extends Component {
       const formattedPrice = (price) => <Currency price={price} />
 
       return (
-        <Table className='data-block' loading={games.get('pricesLoading')} rowKey='key' dataSource={gamePrices}
+        <Table className='data-block' loading={this.props.pricesLoading} rowKey='key' dataSource={gamePrices}
                pagination={{ pageSize: 7 }}>
           <Column className='game-store' key='store' title='Store' dataIndex='shop.name' render={linkStore} />
           <Column className='game-price' key='price' title='Price' dataIndex='price_new' render={formattedPrice} />
@@ -154,8 +159,8 @@ export default class GameDetails extends Component {
   }
 
   render() {
-    const { games } = this.props
-    if (games.get('gameLoading')) {
+    const { games, gameLoading } = this.props
+    if (gameLoading) {
       return <Spin className='spin-loading' spinning={true} tip='Loading detail...' />
     } else {
       return this.generateGameDetail(games)

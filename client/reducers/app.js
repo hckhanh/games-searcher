@@ -16,10 +16,6 @@ export default function(state = INITIAL_STATE, action) {
       return state.merge({ suggestions: action.suggestions })
     case 'CLEAR_SUGGESTIONS':
       return state.merge({ suggestions: List() })
-    case 'LOAD_APP':
-      return state.merge({ loading: true })
-    case 'LOAD_APP_DONE':
-      return state.merge({ loading: false })
     case 'FETCH_ERROR':
       if (!state.get('showError')) {
         message.error(<RestartMessage />, 0)
