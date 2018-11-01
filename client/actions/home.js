@@ -32,6 +32,8 @@ export function getPrices() {
 
     if (!appIds.isEmpty()) {
       const url = apis.GET_PRICES(encodeURIComponent(appIds.join(',')))
+      dispatch({ type: 'GET_PRICES_REQUEST' })
+
       fetch(url)
         .then(({ data: prices }) => {
           prices = Immutable.fromJS(prices)
