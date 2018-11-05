@@ -103,7 +103,7 @@ router.get('/prices/:appId', function(req, res, next) {
 })
 
 router.get('/search', function(req, res, next) {
-  fetch(steamAPI.SEARCH_GAME_BY_NAME + req.query.name)
+  fetch(steamAPI.SEARCH_GAME_BY_NAME + encodeURIComponent(req.query.name))
     .then(({ data: games }) => Promise.all(games.items.map(game => fetch(steamAPI.GAME_DETAIL + game.id))))
     .then(games => {
       let data = []
