@@ -5,7 +5,7 @@ const steamAPI = require('../apis/steam')
 const itadAPI = require('../apis/itad')
 const cache = require('../cache')
 
-const TTL_IN_SECONDS = 60 * 60 // 1 hour
+const TTL_IN_SECONDS = 7 * 24 * 60 * 60 // 1 week
 
 router.get('/', function(req, res, next) {
   const topGames = cache.get('TOP_GAMES')
