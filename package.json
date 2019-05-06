@@ -11,7 +11,9 @@
     "build": "webpack --config prod.config.js",
     "heroku-postbuild": "yarn build",
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "antd": "^2.12.1",
@@ -63,7 +65,8 @@
     "uglify-js": "^3.0.25",
     "url-loader": "^0.5.9",
     "webpack": "^3.3.0",
-    "webpack-manifest-plugin": "^1.2.1"
+    "webpack-manifest-plugin": "^1.2.1",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
@@ -73,5 +76,6 @@
     "pug-loader": "^2.3.0",
     "supertest": "^3.0.0",
     "webpack-dev-server": "^2.5.1"
-  }
+  },
+  "snyk": true
 }
