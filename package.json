@@ -62,7 +62,7 @@
     "style-loader": "^0.18.2",
     "uglify-js": "^3.0.25",
     "url-loader": "^0.5.9",
-    "webpack": "^3.3.0",
+    "webpack": "^4.0.0",
     "webpack-manifest-plugin": "^1.2.1"
   },
   "devDependencies": {
