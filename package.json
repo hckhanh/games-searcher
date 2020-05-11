@@ -14,7 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "antd": "^2.12.1",
+    "antd": "^2.13.14",
     "axios": "^0.18.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
