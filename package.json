@@ -46,7 +46,7 @@
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "prop-types": "^15.6.1",
-    "pug": "^2.0.0-rc.2",
+    "pug": "^3.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
