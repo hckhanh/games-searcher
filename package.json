@@ -41,7 +41,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "lodash": "^4.17.4",
-    "lodash-es": "^4.17.4",
+    "lodash-es": "^4.17.21",
     "node-sass": "^4.5.3",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "promise-polyfill": "^6.0.2",
